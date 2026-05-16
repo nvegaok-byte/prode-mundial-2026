@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRODE Mundial 2026 🏆</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-screen" id="authScreen">
+  <div class="auth-card">
+    <h1 class="auth-title">PRODE 2026</h1>
+    <p class="auth-subtitle">Mundial USA · México · Canadá</p>
+    
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-auth="login">Entrar</button>
+      <button class="auth-tab" data-auth="register">Registrarse</button>
+    </div>
+    
+    <div class="auth-error" id="authError"></div>
+    
+    <div id="loginForm">
+      <div class="input-group">
+        <label class="input-label">Email</label>
+        <input type="email" class="input-field" id="loginEmail" placeholder="tu@email.com" autocomplete="email">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Clave</label>
+        <input type="password" class="input-field" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-main" id="btnLogin">Entrar</button>
+    </div>
+    
+    <div id="registerForm" style="display:none">
+      <div class="input-group">
+        <label class="input-label">Nombre completo</label>
+        <input type="text" class="input-field" id="regNombre" placeholder="Nombre y apellido">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Email</label>
+        <input type="email" class="input-field" id="regEmail" placeholder="tu@email.com">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Clave (mínimo 4 caracteres)</label>
+        <input type="password" class="input-field" id="regPassword" placeholder="••••••••">
+      </div>
+      <button class="btn-main" id="btnRegister">Crear cuenta</button>
+    </div>
+    
+    <div class="auth-info">
+      Después de registrarte, esperá a que un admin habilite tu participación.
+    </div>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <header class="header">
+    <div class="header-inner">
+      <div class="app-title">PRODE 2026 ☀️
+        <small>USA · México · Canadá</small>
+      </div>
+      <div class="user-info">
+        <span class="user-badge" id="userBadge">👤 Cargando...</span>
+        <a href="admin.html" class="btn-admin-link hidden" id="adminLink">⭐ Admin</a>
+        <button class="btn-logout" id="btnLogout">Salir</button>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="tabs-nav">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="pronosticos">📝 Mis Pronósticos</button>
+      <button class="tab-btn" data-tab="tabla">🏆 Tabla General</button>
+      <button class="tab-btn" data-tab="publicos">👥 Pronósticos de Todos</button>
+    </div>
+  </nav>
+  
+  <main class="main">
+    
+    <section id="tab-pronosticos">
+      <h2 class="section-title">MIS PRONÓSTICOS</h2>
+      <p class="section-desc">Cargá tu predicción para los 72 partidos. <strong>5 pts</strong> resultado exacto · <strong>2 pts</strong> acertar el ganador. No te olvides de presionar <strong>"Enviar"</strong> al final.</p>
+      
+      <div id="countdownContainer"></div>
+      <div id="pagoWarnContainer"></div>
+      
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="arg">🇦🇷 Argentina</button>
+        <button class="filter-btn" data-filter="j1">Fecha 1</button>
+        <button class="filter-btn" data-filter="j2">Fecha 2</button>
+        <button class="filter-btn" data-filter="j3">Fecha 3</button>
+      </div>
+      
+      <div id="matchesContainer">
+        <div class="loader"><div class="spinner"></div>Cargando partidos...</div>
+      </div>
+    </section>
+    
+    <section id="tab-tabla" class="hidden">
+      <h2 class="section-title">TABLA GENERAL</h2>
+      <p class="section-desc" id="tablaDesc">Cargando...</p>
+      <div id="tablaContainer">
+        <div class="loader"><div class="spinner"></div>Cargando tabla...</div>
+      </div>
+    </section>
+    
+    <section id="tab-publicos" class="hidden">
+      <h2 class="section-title">PRONÓSTICOS DE TODOS</h2>
+      <p class="section-desc">Visible una vez cerrados los pronósticos (11 jun, 16hs).</p>
+      <div id="publicosContainer"></div>
+    </section>
+    
+  </main>
+  
+  <!-- Sticky Enviar Bar (solo visible en tab pronósticos) -->
+  <div class="send-bar hidden" id="sendBar">
+    <div class="send-bar-info">
+      <strong id="dirtyCount">0</strong> pronóstico(s) sin enviar
+      <span class="dirty-badge hidden" id="dirtyBadge">⚠️ Sin guardar</span>
+    </div>
+    <button class="btn-enviar" id="btnEnviar" disabled>📤 Enviar pronósticos</button>
+  </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal-overlay" id="modalConfirm">
+  <div class="modal">
+    <h3>📤 Confirmar envío</h3>
+    <p>Vas a enviar <strong id="modalDirtyCount">0</strong> pronóstico(s) al servidor.<br><br>Podés volver a modificarlos hasta el <strong>11 de junio a las 16hs</strong>.</p>
+    <div class="modal-actions">
+      <button class="modal-btn-cancel" id="modalCancel">Cancelar</button>
+      <button class="modal-btn-confirm" id="modalConfirmBtn">Confirmar envío</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+<script>
+const SESSION_KEY = 'prode_session_2026';
+let session = null;
+let pronosticos = {};      // los que están en el servidor (sincronizados)
+let pendientes = {};       // los modificados pero aún no enviados
+let resultadosReales = {};
+let pronosticosCerrados = false;
+let fechaCierre = null;
+
+function $(s) { return document.querySelector(s); }
+function $$(s) { return document.querySelectorAll(s); }
+
+function showToast(msg, type = '') {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast ' + type, 3000);
+}
+
+function saveSession() { try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e){} }
+function loadSession() { try { const s = sessionStorage.getItem(SESSION_KEY); if (s) session = JSON.parse(s); } catch(e){} }
+function clearSession() { try { sessionStorage.removeItem(SESSION_KEY); } catch(e){} session = null; }
+
+// ============ AUTH ============
+$$('.auth-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    $$('.auth-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    $('#authError').classList.remove('show');
+    $('#loginForm').style.display = t.dataset.auth === 'login' ? 'block' : 'none';
+    $('#registerForm').style.display = t.dataset.auth === 'register' ? 'block' : 'none';
+  });
+});
+
+$('#btnLogin').addEventListener('click', async () => {
+  const email = $('#loginEmail').value.trim();
+  const password = $('#loginPassword').value;
+  if (!email || !password) { showAuthError('Completá email y clave'); return; }
+  setBtnLoading('#btnLogin', true);
+  const res = await api('login', { email, password });
+  setBtnLoading('#btnLogin', false);
+  if (res.ok) {
+    session = { ...res.usuario, password };
+    saveSession();
+    enterApp();
+  } else {
+    showAuthError(res.error);
+  }
+});
+
+$('#btnRegister').addEventListener('click', async () => {
+  const nombre = $('#regNombre').value.trim();
+  const email = $('#regEmail').value.trim();
+  const password = $('#regPassword').value;
+  if (!nombre || !email || !password) { showAuthError('Completá todos los campos'); return; }
+  if (password.length < 4) { showAuthError('Clave mínimo 4 caracteres'); return; }
+  setBtnLoading('#btnRegister', true);
+  const res = await api('registrar', { nombre, email, password });
+  setBtnLoading('#btnRegister', false);
+  if (res.ok) {
+    session = { ...res.usuario, password };
+    saveSession();
+    enterApp();
+  } else {
+    showAuthError(res.error);
+  }
+});
+
+function showAuthError(msg) {
+  const e = $('#authError');
+  e.textContent = msg;
+  e.classList.add('show');
+}
+
+function setBtnLoading(sel, loading) {
+  const btn = $(sel);
+  btn.disabled = loading;
+  if (loading) { btn.dataset.original = btn.textContent; btn.textContent = 'Procesando...'; }
+  else { btn.textContent = btn.dataset.original || btn.textContent; }
+}
+
+// ============ ENTER APP ============
+function enterApp() {
+  $('#authScreen').style.display = 'none';
+  $('#app').classList.add('show');
+  const badge = $('#userBadge');
+  badge.innerHTML = `👤 ${session.nombre}` + (session.admin ? ' <span style="margin-left:0.3rem">⭐</span>' : '');
+  if (session.admin) {
+    badge.classList.add('admin');
+    $('#adminLink').classList.remove('hidden');
+  }
+  $('#btnLogout').addEventListener('click', () => { clearSession(); location.reload(); });
+  setupTabs();
+  setupFilters();
+  setupSendBar();
+  cargarDatosIniciales();
+}
+
+async function cargarDatosIniciales() {
+  const info = await api('obtenerInfoPublica');
+  if (info.ok) {
+    pronosticosCerrados = info.cerrado;
+    fechaCierre = new Date(info.fecha_cierre);
+    renderCountdown();
+    if (!pronosticosCerrados) startCountdownTimer();
+  }
+  if (!session.pago) renderPagoWarning();
+  
+  const res = await api('obtenerResultados');
+  if (res.ok) resultadosReales = res.resultados;
+  
+  const pronos = await api('obtenerMisPronosticos', { userId: session.id, password: session.password });
+  if (pronos.ok) {
+    pronosticos = pronos.pronosticos;
+  } else if (pronos.error && pronos.error.includes('Sesión')) {
+    clearSession(); location.reload(); return;
+  }
+  renderMatches('all');
+}
+
+function renderCountdown() {
+  const c = $('#countdownContainer');
+  if (pronosticosCerrados) {
+    c.innerHTML = `<div class="countdown-card closed"><div class="countdown-text"><strong>🔒 PRONÓSTICOS CERRADOS</strong>Ya empezó el Mundial. ¡A disfrutar y sumar puntos!</div></div>`;
+  } else {
+    c.innerHTML = `<div class="countdown-card"><div class="countdown-text"><strong>⏳ TIEMPO PARA PRONOSTICAR</strong>Se cierra el 11 de junio a las 16hs</div><div class="countdown-timer" id="countdownTimer">--</div></div>`;
+  }
+}
+
+function renderPagoWarning() {
+  $('#pagoWarnContainer').innerHTML = `<div class="pago-warn"><h3>⏸️ Participación pendiente</h3>Un administrador debe habilitarte para poder guardar pronósticos.<br>Mientras tanto, podés ver el fixture.</div>`;
+}
+
+function startCountdownTimer() {
+  const update = () => {
+    const diff = fechaCierre - new Date();
+    if (diff <= 0) { pronosticosCerrados = true; renderCountdown(); renderMatches('all'); return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const el = $('#countdownTimer');
+    if (el) el.textContent = `${d}d ${h}h ${m}m`;
+  };
+  update();
+  setInterval(update, 30000);
+}
+
+// ============ MATCHES ============
+function setupFilters() {
+  $$('.filter-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      $$('.filter-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      renderMatches(b.dataset.filter);
+    });
+  });
+}
+
+function renderMatches(filter) {
+  let list = MATCHES;
+  if (filter === 'arg') list = MATCHES.filter(m => m.home === 'ARG' || m.away === 'ARG');
+  else if (filter === 'j1') list = MATCHES.filter(m => m.round === 1);
+  else if (filter === 'j2') list = MATCHES.filter(m => m.round === 2);
+  else if (filter === 'j3') list = MATCHES.filter(m => m.round === 3);
+  
+  const byDate = {};
+  list.forEach(m => { if (!byDate[m.date]) byDate[m.date] = []; byDate[m.date].push(m); });
+  
+  $('#matchesContainer').innerHTML = Object.entries(byDate).map(([date, ms]) => `
+    <div class="match-day-group">
+      <div class="match-day-title">
+        <span class="date-badge">${date}</span> ${getDayName(date)}
+      </div>
+      ${ms.map(m => renderMatch(m)).join('')}
+    </div>
+  `).join('');
+  
+  $('#matchesContainer').querySelectorAll('.score-input').forEach(input => {
+    input.addEventListener('input', handleScoreInput);
+  });
+}
+
+function calcularPuntosPartido(m) {
+  const p = pronosticos[m.id];
+  const r = resultadosReales[m.id];
+  if (!p || !r) return null;
+  if (p.local === r.local && p.visitante === r.visitante) return { tipo: 'exact', pts: 5 };
+  const gP = p.local > p.visitante ? 'L' : (p.local < p.visitante ? 'V' : 'E');
+  const gR = r.local > r.visitante ? 'L' : (r.local < r.visitante ? 'V' : 'E');
+  return gP === gR ? { tipo: 'partial', pts: 2 } : { tipo: 'zero', pts: 0 };
+}
+
+function renderMatch(m) {
+  const home = TEAMS[m.home];
+  const away = TEAMS[m.away];
+  // Si hay pendiente, mostrar eso; sino, lo guardado
+  const pend = pendientes[m.id];
+  const guardado = pronosticos[m.id] || {};
+  const efectivo = pend || guardado;
+  const real = resultadosReales[m.id];
+  const isArg = m.home === 'ARG' || m.away === 'ARG';
+  const homeArg = m.home === 'ARG' ? 'is-arg' : '';
+  const awayArg = m.away === 'ARG' ? 'is-arg' : '';
+  const locked = pronosticosCerrados || !session.pago;
+  const hVal = efectivo.local !== undefined ? efectivo.local : '';
+  const aVal = efectivo.visitante !== undefined ? efectivo.visitante : '';
+  const dirty = !!pend;
+  const pts = calcularPuntosPartido(m);
+  
+  return `
+    <div class="match ${isArg ? 'is-arg' : ''}">
+      <div class="team-side home">
+        <span class="team-name ${homeArg}">${home.name}</span>
+        <span class="flag">${home.flag}</span>
+      </div>
+      <div class="vs-block">
+        <div class="vs-scores">
+          <input type="number" class="score-input ${hVal !== '' ? 'filled' : ''} ${dirty ? 'dirty' : ''}" 
+                 min="0" max="20" data-match="${m.id}" data-side="local" 
+                 value="${hVal}" ${locked ? 'disabled' : ''}>
+          <span class="vs-label">VS</span>
+          <input type="number" class="score-input ${aVal !== '' ? 'filled' : ''} ${dirty ? 'dirty' : ''}" 
+                 min="0" max="20" data-match="${m.id}" data-side="visitante" 
+                 value="${aVal}" ${locked ? 'disabled' : ''}>
+        </div>
+        <div class="match-meta"><strong>${m.time}</strong> · ${m.venue}</div>
+        ${real ? `<div class="match-result">Real: ${real.local}-${real.visitante}</div>` : ''}
+        ${pts ? `<div class="match-points ${pts.tipo}">${pts.pts === 0 ? '0 pts' : '+' + pts.pts + ' pts'}</div>` : ''}
+      </div>
+      <div class="team-side away">
+        <span class="flag">${away.flag}</span>
+        <span class="team-name ${awayArg}">${away.name}</span>
+      </div>
+    </div>
+  `;
+}
+
+function handleScoreInput(e) {
+  const input = e.target;
+  const matchId = parseInt(input.dataset.match);
+  const side = input.dataset.side;
+  let val = input.value;
+  if (val !== '') {
+    val = Math.max(0, Math.min(20, parseInt(val) || 0));
+    input.value = val;
+    input.classList.add('filled');
+  } else {
+    input.classList.remove('filled');
+    val = null;
+  }
+  
+  // Buscar el otro lado
+  const pair = document.querySelector(`.score-input[data-match="${matchId}"][data-side="${side === 'local' ? 'visitante' : 'local'}"]`);
+  const otherVal = pair.value === '' ? null : parseInt(pair.value);
+  
+  // Guardar como pendiente si los dos lados tienen valor
+  if (val !== null && otherVal !== null) {
+    const gl = side === 'local' ? val : otherVal;
+    const gv = side === 'visitante' ? val : otherVal;
+    const guardado = pronosticos[matchId];
+    // Solo marcar como pendiente si cambió respecto al guardado
+    if (!guardado || guardado.local !== gl || guardado.visitante !== gv) {
+      pendientes[matchId] = { local: gl, visitante: gv };
+    } else {
+      delete pendientes[matchId];
+    }
+  } else if (val === null && otherVal === null) {
+    delete pendientes[matchId];
+  } else {
+    // Solo un lado completo: marcar como pendiente parcial
+    pendientes[matchId] = { local: side === 'local' ? val : otherVal, visitante: side === 'visitante' ? val : otherVal };
+  }
+  
+  // Aplicar clase dirty a ambos inputs
+  const isDirty = !!pendientes[matchId];
+  document.querySelectorAll(`.score-input[data-match="${matchId}"]`).forEach(inp => {
+    if (isDirty) inp.classList.add('dirty');
+    else inp.classList.remove('dirty');
+  });
+  
+  updateSendBar();
+}
+
+// ============ SEND BAR + MODAL ============
+function setupSendBar() {
+  $('#btnEnviar').addEventListener('click', () => {
+    const validas = Object.entries(pendientes).filter(([id, p]) => {
+      return p.local !== null && p.local !== undefined && p.visitante !== null && p.visitante !== undefined;
+    });
+    if (validas.length === 0) {
+      showToast('No hay pronósticos válidos para enviar', 'error');
+      return;
+    }
+    $('#modalDirtyCount').textContent = validas.length;
+    $('#modalConfirm').classList.add('show');
+  });
+  
+  $('#modalCancel').addEventListener('click', () => $('#modalConfirm').classList.remove('show'));
+  
+  $('#modalConfirmBtn').addEventListener('click', async () => {
+    $('#modalConfirm').classList.remove('show');
+    await enviarPronosticos();
+  });
+}
+
+function updateSendBar() {
+  const validas = Object.entries(pendientes).filter(([id, p]) => {
+    return p.local !== null && p.local !== undefined && p.visitante !== null && p.visitante !== undefined;
+  });
+  const count = validas.length;
+  const totalPendientes = Object.keys(pendientes).length;
+  
+  const tab = document.querySelector('.tab-btn.active');
+  const enPronosticos = tab && tab.dataset.tab === 'pronosticos';
+  
+  if (enPronosticos && !pronosticosCerrados && session.pago) {
+    $('#sendBar').classList.remove('hidden');
+  } else {
+    $('#sendBar').classList.add('hidden');
+    return;
+  }
+  
+  $('#dirtyCount').textContent = count;
+  $('#btnEnviar').disabled = count === 0;
+  
+  if (totalPendientes > count) {
+    $('#dirtyBadge').classList.remove('hidden');
+    $('#dirtyBadge').textContent = `⚠️ ${totalPendientes - count} incompleto(s)`;
+  } else {
+    $('#dirtyBadge').classList.add('hidden');
+  }
+}
+
+async function enviarPronosticos() {
+  const validas = {};
+  Object.entries(pendientes).forEach(([id, p]) => {
+    if (p.local !== null && p.local !== undefined && p.visitante !== null && p.visitante !== undefined) {
+      validas[id] = p;
+    }
+  });
+  
+  if (Object.keys(validas).length === 0) {
+    showToast('No hay pronósticos válidos', 'error');
+    return;
+  }
+  
+  $('#btnEnviar').disabled = true;
+  $('#btnEnviar').textContent = '⏳ Enviando...';
+  
+  const res = await api('guardarPronosticosBatch', {
+    userId: session.id,
+    password: session.password,
+    pronosticos: validas
+  });
+  
+  $('#btnEnviar').textContent = '📤 Enviar pronósticos';
+  
+  if (res.ok) {
+    // Mover de pendientes a guardados
+    Object.entries(validas).forEach(([id, p]) => {
+      pronosticos[id] = p;
+      delete pendientes[id];
+    });
+    // Mantener los pendientes incompletos
+    showToast(`✅ ${res.guardados} pronósticos enviados`, 'success');
+    const f = document.querySelector('.filter-btn.active').dataset.filter;
+    renderMatches(f);
+    updateSendBar();
+  } else {
+    showToast('❌ ' + res.error, 'error');
+    $('#btnEnviar').disabled = false;
+  }
+}
+
+// ============ TABS ============
+function setupTabs() {
+  $$('.tab-btn').forEach(t => {
+    t.addEventListener('click', () => {
+      $$('.tab-btn').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      $$('main section').forEach(s => s.classList.add('hidden'));
+      $('#tab-' + t.dataset.tab).classList.remove('hidden');
+      if (t.dataset.tab === 'tabla') cargarTabla();
+      if (t.dataset.tab === 'publicos') cargarPublicos();
+      updateSendBar();
+    });
+  });
+}
+
+async function cargarTabla() {
+  const cont = $('#tablaContainer');
+  cont.innerHTML = '<div class="loader"><div class="spinner"></div>Cargando...</div>';
+  const res = await api('obtenerTablaGeneral');
+  if (!res.ok) { cont.innerHTML = `<div style="padding:2rem;text-align:center;color:var(--grey)">${res.error}</div>`; return; }
+  
+  $('#tablaDesc').innerHTML = `<strong>${res.total_partidos_con_resultado}</strong> partidos con resultado · ${res.pts_exacto} pts exacto / ${res.pts_acierto} pts ganador`;
+  
+  if (res.tabla.length === 0) {
+    cont.innerHTML = `<div style="padding:2rem;text-align:center;color:var(--grey)">Aún no hay participantes habilitados.</div>`;
+    return;
+  }
+  
+  cont.innerHTML = `<div class="tabla-card"><table class="tabla">
+    <thead><tr><th>#</th><th>Participante</th><th>Exactos</th><th>Ganador</th><th>Cargados</th><th>Pts</th></tr></thead>
+    <tbody>${res.tabla.map((u, i) => {
+      const isMe = u.id === session.id;
+      const posClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : ''));
+      return `<tr class="${isMe ? 'me' : ''}">
+        <td><span class="pos ${posClass}">${i+1}</span></td>
+        <td>${u.nombre}${isMe ? ' <small style="opacity:0.7">(vos)</small>' : ''}</td>
+        <td>${u.aciertos_exactos}</td>
+        <td>${u.aciertos_ganador}</td>
+        <td>${u.pronosticos_cargados}/72</td>
+        <td><span class="pts">${u.puntos}</span></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
+}
+
+async function cargarPublicos() {
+  const cont = $('#publicosContainer');
+  if (!pronosticosCerrados) {
+    cont.innerHTML = `<div style="background:white;padding:2rem;border-radius:14px;text-align:center;box-shadow:var(--shadow)"><div style="font-size:3rem;margin-bottom:0.5rem">🔒</div><h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;margin-bottom:0.3rem">Pronósticos privados</h3><p style="color:var(--grey)">Una vez cerrado el plazo (11 jun, 16hs) vas a poder ver los pronósticos de todos.</p></div>`;
+    return;
+  }
+  cont.innerHTML = '<div class="loader"><div class="spinner"></div>Cargando...</div>';
+  const [res, tabla] = await Promise.all([api('obtenerPronosticosPublicos'), api('obtenerTablaGeneral')]);
+  if (!res.ok) { cont.innerHTML = `<div style="padding:2rem;text-align:center;color:var(--grey)">${res.error}</div>`; return; }
+  const ptsMap = {};
+  if (tabla.ok) tabla.tabla.forEach(u => { ptsMap[u.id] = u.puntos; });
+  cont.innerHTML = res.usuarios.map(u => `
+    <div class="publicos-card">
+      <div class="publicos-user">
+        <h3>${u.nombre}</h3>
+        <span class="pts-badge">${ptsMap[u.id] || 0} pts</span>
+      </div>
+      <div class="publicos-list">
+        ${MATCHES.map(m => {
+          const p = u.pronosticos[m.id];
+          if (!p) return '';
+          const r = resultadosReales[m.id];
+          let cls = '';
+          if (r) {
+            if (p.local === r.local && p.visitante === r.visitante) cls = 'exact';
+            else {
+              const gp = p.local > p.visitante ? 'L' : (p.local < p.visitante ? 'V' : 'E');
+              const gr = r.local > r.visitante ? 'L' : (r.local < r.visitante ? 'V' : 'E');
+              cls = gp === gr ? 'partial' : 'zero';
+            }
+          }
+          return `<div class="publicos-prono ${cls}"><span>${TEAMS[m.home].flag} ${TEAMS[m.away].flag}</span><strong>${p.local}-${p.visitante}</strong></div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============ INIT ============
+loadSession();
+if (session && session.id && session.password) {
+  api('verificarUsuario', { userId: session.id, password: session.password }).then(res => {
+    if (res.ok) {
+      session = { ...res.usuario, password: session.password };
+      saveSession();
+      enterApp();
+    } else {
+      clearSession();
+    }
+  }).catch(() => clearSession());
+}
+</script>
+</body>
+</html>

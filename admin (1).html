@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es" class="admin">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin PRODE Mundial 2026 ⭐</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="admin">
+
+<div class="auth-screen admin" id="authScreen">
+  <div class="auth-card">
+    <h1 class="auth-title">⭐ ADMIN 2026</h1>
+    <p class="auth-subtitle">Panel de Administración</p>
+    <div class="auth-error" id="authError"></div>
+    <div class="input-group">
+      <label class="input-label">Email</label>
+      <input type="email" class="input-field" id="loginEmail" placeholder="tu@email.com">
+    </div>
+    <div class="input-group">
+      <label class="input-label">Clave</label>
+      <input type="password" class="input-field" id="loginPassword" placeholder="••••••••">
+    </div>
+    <button class="btn-main" id="btnLogin">Entrar</button>
+    <div class="auth-info"><a href="index.html" style="color:var(--celeste-dark);text-decoration:none;font-weight:600">← Volver a la app</a></div>
+  </div>
+</div>
+
+<div class="app admin" id="app">
+  <header class="header admin">
+    <div class="header-inner">
+      <div class="app-title">⭐ PANEL ADMIN<small>PRODE Mundial 2026</small></div>
+      <div class="user-info">
+        <span class="user-badge admin" id="userBadge">⭐ Admin</span>
+        <a href="index.html" class="btn-admin-link">← App</a>
+        <button class="btn-logout" id="btnLogout">Salir</button>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="tabs-nav">
+    <div class="tabs-inner">
+      <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="usuarios">👥 Usuarios</button>
+      <button class="tab-btn" data-tab="resultados">⚽ Resultados</button>
+      <button class="tab-btn" data-tab="admins">⭐ Admins</button>
+      <button class="tab-btn" data-tab="config">⚙️ Config</button>
+    </div>
+  </nav>
+  
+  <main class="main">
+    <section id="tab-dashboard">
+      <h2 class="section-title">DASHBOARD</h2>
+      <p class="section-desc">Vista general del prode</p>
+      <div class="stats-grid" id="statsGrid"><div class="loader"><div class="spinner"></div>Cargando...</div></div>
+    </section>
+    
+    <section id="tab-usuarios" class="hidden">
+      <h2 class="section-title">USUARIOS</h2>
+      <p class="section-desc">Habilitá la participación marcando "Pagó: SÍ".</p>
+      <div class="card">
+        <table class="usuarios-table">
+          <thead><tr><th>Nombre</th><th>Email</th><th>Registro</th><th>Estado</th><th>Acción</th></tr></thead>
+          <tbody id="usuariosBody"><tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--grey)">Cargando...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    <section id="tab-resultados" class="hidden">
+      <h2 class="section-title">RESULTADOS REALES</h2>
+      <p class="section-desc">Cargá los resultados finales. Los puntos se calculan automáticamente.</p>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="con">Con resultado</button>
+        <button class="filter-btn" data-filter="sin">Sin resultado</button>
+        <button class="filter-btn" data-filter="arg">🇦🇷 Argentina</button>
+        <button class="filter-btn" data-filter="j1">Fecha 1</button>
+        <button class="filter-btn" data-filter="j2">Fecha 2</button>
+        <button class="filter-btn" data-filter="j3">Fecha 3</button>
+      </div>
+      <div class="card" id="resultadosContainer"><div class="loader"><div class="spinner"></div>Cargando...</div></div>
+    </section>
+    
+    <section id="tab-admins" class="hidden">
+      <h2 class="section-title">ADMINISTRADORES</h2>
+      <p class="section-desc">Otros admins que pueden cargar resultados.</p>
+      <div class="card">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:0.8rem">➕ Agregar admin</h3>
+        <div class="config-row">
+          <input type="email" class="input-field" id="newAdminEmail" placeholder="Email" style="flex:1;min-width:200px">
+          <input type="text" class="input-field" id="newAdminNombre" placeholder="Nombre" style="flex:1;min-width:150px">
+          <button class="btn-save" id="btnAddAdmin">Agregar</button>
+        </div>
+        <p style="font-size:0.8rem;color:var(--grey);margin-top:0.5rem">El email debe coincidir con el que usen para registrarse.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:0.8rem">Lista</h3>
+        <div id="adminsList"><div class="loader"><div class="spinner"></div>Cargando...</div></div>
+      </div>
+    </section>
+    
+    <section id="tab-config" class="hidden">
+      <h2 class="section-title">CONFIGURACIÓN</h2>
+      <div class="card">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:0.8rem">🕐 Fecha de cierre</h3>
+        <p style="font-size:0.85rem;color:var(--grey);margin-bottom:1rem">Formato: YYYY-MM-DDTHH:MM:SS-03:00</p>
+        <div class="config-row">
+          <input type="text" class="input-field" id="fechaCierre" value="2026-06-11T16:00:00-03:00">
+          <button class="btn-save" id="btnSaveFecha">Guardar</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:0.8rem">📋 Sistema de puntos</h3>
+        <p><strong>5 pts</strong> — Resultado exacto<br><strong>2 pts</strong> — Acierto de ganador/empate<br><strong>0 pts</strong> — Sin acierto</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+<script>
+const SESSION_KEY = 'prode_admin_session_2026';
+let session = null;
+let resultadosReales = {};
+
+function $(s) { return document.querySelector(s); }
+function $$(s) { return document.querySelectorAll(s); }
+
+function showToast(msg, type = '') {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast ' + type, 2500);
+}
+
+function saveSession() { try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e){} }
+function loadSession() { try { const s = sessionStorage.getItem(SESSION_KEY); if (s) session = JSON.parse(s); } catch(e){} }
+function clearSession() { try { sessionStorage.removeItem(SESSION_KEY); } catch(e){} session = null; }
+
+$('#btnLogin').addEventListener('click', async () => {
+  const email = $('#loginEmail').value.trim();
+  const password = $('#loginPassword').value;
+  if (!email || !password) { showAuthError('Completá email y clave'); return; }
+  const btn = $('#btnLogin');
+  btn.disabled = true; btn.textContent = 'Procesando...';
+  const res = await api('login', { email, password });
+  btn.disabled = false; btn.textContent = 'Entrar';
+  if (res.ok) {
+    if (!res.usuario.admin) { showAuthError('No tenés permisos de administrador'); return; }
+    session = { ...res.usuario, password };
+    saveSession();
+    enterApp();
+  } else {
+    showAuthError(res.error);
+  }
+});
+
+function showAuthError(msg) {
+  const e = $('#authError');
+  e.textContent = msg;
+  e.classList.add('show');
+}
+
+function enterApp() {
+  $('#authScreen').style.display = 'none';
+  $('#app').classList.add('show');
+  $('#userBadge').textContent = '⭐ ' + session.nombre;
+  $('#btnLogout').addEventListener('click', () => { clearSession(); location.reload(); });
+  setupTabs();
+  setupFilters();
+  cargarDashboard();
+}
+
+function setupTabs() {
+  $$('.tab-btn').forEach(t => {
+    t.addEventListener('click', () => {
+      $$('.tab-btn').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      $$('main section').forEach(s => s.classList.add('hidden'));
+      $('#tab-' + t.dataset.tab).classList.remove('hidden');
+      if (t.dataset.tab === 'dashboard') cargarDashboard();
+      if (t.dataset.tab === 'usuarios') cargarUsuarios();
+      if (t.dataset.tab === 'resultados') cargarResultados();
+      if (t.dataset.tab === 'admins') cargarAdmins();
+    });
+  });
+}
+
+async function cargarDashboard() {
+  const grid = $('#statsGrid');
+  grid.innerHTML = '<div class="loader"><div class="spinner"></div>Cargando...</div>';
+  const [u, t, r] = await Promise.all([
+    api('adminListarUsuarios', { userId: session.id, password: session.password }),
+    api('obtenerTablaGeneral'),
+    api('obtenerResultados')
+  ]);
+  const totalUsr = u.ok ? u.usuarios.length : 0;
+  const pagados = u.ok ? u.usuarios.filter(x => x.pago).length : 0;
+  const totalRes = r.ok ? Object.keys(r.resultados).length : 0;
+  const lider = t.ok && t.tabla.length ? t.tabla[0] : null;
+  grid.innerHTML = `
+    <div class="stat-card"><div class="stat-value">${totalUsr}</div><div class="stat-label">Usuarios</div></div>
+    <div class="stat-card"><div class="stat-value">${pagados}</div><div class="stat-label">Habilitados</div></div>
+    <div class="stat-card"><div class="stat-value">${totalRes}/72</div><div class="stat-label">Resultados</div></div>
+    <div class="stat-card"><div class="stat-value" style="font-size:1.2rem">${lider ? lider.nombre : '-'}</div><div class="stat-label">${lider ? lider.puntos + ' pts líder' : 'Sin líder'}</div></div>
+  `;
+}
+
+async function cargarUsuarios() {
+  const tbody = $('#usuariosBody');
+  const res = await api('adminListarUsuarios', { userId: session.id, password: session.password });
+  if (!res.ok) { tbody.innerHTML = `<tr><td colspan="5" style="color:var(--danger);padding:1rem">${res.error}</td></tr>`; return; }
+  if (!res.usuarios.length) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--grey)">Sin usuarios</td></tr>`; return; }
+  tbody.innerHTML = res.usuarios.map(u => `
+    <tr>
+      <td><strong>${u.nombre}</strong></td>
+      <td>${u.email}</td>
+      <td style="font-size:0.8rem;color:var(--grey)">${u.fecha_registro ? new Date(u.fecha_registro).toLocaleDateString('es-AR') : '-'}</td>
+      <td><span class="estado-badge ${u.pago ? 'si' : 'no'}">${u.pago ? '✓ Pagó' : '✗ Pendiente'}</span></td>
+      <td><button class="btn-toggle ${u.pago ? 'no' : ''}" data-id="${u.id}" data-state="${!u.pago}">${u.pago ? 'Marcar NO pago' : 'Habilitar'}</button></td>
+    </tr>
+  `).join('');
+  tbody.querySelectorAll('.btn-toggle').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      const res = await api('adminCambiarPago', { userId: session.id, password: session.password, targetUserId: btn.dataset.id, nuevoEstado: btn.dataset.state === 'true' });
+      if (res.ok) { showToast('✅ Actualizado', 'success'); cargarUsuarios(); }
+      else { showToast('❌ ' + res.error, 'error'); btn.disabled = false; }
+    });
+  });
+}
+
+function setupFilters() {
+  $$('.filter-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      $$('.filter-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      renderResultados(b.dataset.filter);
+    });
+  });
+}
+
+async function cargarResultados() {
+  const cont = $('#resultadosContainer');
+  cont.innerHTML = '<div class="loader"><div class="spinner"></div>Cargando...</div>';
+  const res = await api('obtenerResultados');
+  if (!res.ok) { cont.innerHTML = `<div style="color:var(--danger);padding:1rem">${res.error}</div>`; return; }
+  resultadosReales = res.resultados;
+  renderResultados('all');
+}
+
+function renderResultados(filter) {
+  let list = MATCHES;
+  if (filter === 'arg') list = MATCHES.filter(m => m.home === 'ARG' || m.away === 'ARG');
+  else if (filter === 'j1') list = MATCHES.filter(m => m.round === 1);
+  else if (filter === 'j2') list = MATCHES.filter(m => m.round === 2);
+  else if (filter === 'j3') list = MATCHES.filter(m => m.round === 3);
+  else if (filter === 'con') list = MATCHES.filter(m => resultadosReales[m.id]);
+  else if (filter === 'sin') list = MATCHES.filter(m => !resultadosReales[m.id]);
+  
+  const cont = $('#resultadosContainer');
+  if (!list.length) { cont.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--grey)">Sin partidos</div>'; return; }
+  cont.innerHTML = list.map(m => {
+    const home = TEAMS[m.home];
+    const away = TEAMS[m.away];
+    const r = resultadosReales[m.id];
+    const isArg = m.home === 'ARG' || m.away === 'ARG';
+    const hVal = r ? r.local : '';
+    const aVal = r ? r.visitante : '';
+    return `<div class="match-admin" style="${isArg ? 'background:linear-gradient(90deg,rgba(117,170,219,0.08),rgba(255,215,0,0.05));border-radius:8px;padding:0.7rem 0.5rem;margin:0 -0.5rem' : ''}">
+      <div class="team-side home"><span>${home.name}</span><span class="flag">${home.flag}</span></div>
+      <div class="vs-block">
+        <input type="number" class="score-input ${hVal !== '' ? 'filled' : ''}" min="0" max="20" id="r-${m.id}-l" value="${hVal}">
+        <span class="vs-label">VS</span>
+        <input type="number" class="score-input ${aVal !== '' ? 'filled' : ''}" min="0" max="20" id="r-${m.id}-v" value="${aVal}">
+      </div>
+      <div class="team-side"><span class="flag">${away.flag}</span><span>${away.name}</span></div>
+      <div class="match-actions">
+        <div class="match-meta">#${m.id} · ${m.date} ${m.time}</div>
+        <button class="btn-save" data-match="${m.id}">${r ? 'Actualizar' : 'Guardar'}</button>
+        ${r ? `<button class="btn-delete" data-match="${m.id}">Borrar</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  cont.querySelectorAll('.btn-save').forEach(btn => btn.addEventListener('click', () => guardarResultado(parseInt(btn.dataset.match))));
+  cont.querySelectorAll('.btn-delete').forEach(btn => btn.addEventListener('click', () => eliminarResultado(parseInt(btn.dataset.match))));
+}
+
+async function guardarResultado(matchId) {
+  const gl = $('#r-' + matchId + '-l').value === '' ? NaN : parseInt($('#r-' + matchId + '-l').value);
+  const gv = $('#r-' + matchId + '-v').value === '' ? NaN : parseInt($('#r-' + matchId + '-v').value);
+  if (isNaN(gl) || isNaN(gv)) { showToast('❌ Cargá ambos goles', 'error'); return; }
+  const res = await api('adminCargarResultado', { userId: session.id, password: session.password, partidoId: matchId, golesLocal: gl, golesVisitante: gv });
+  if (res.ok) {
+    resultadosReales[matchId] = { local: gl, visitante: gv };
+    showToast('✅ Guardado', 'success');
+    renderResultados(document.querySelector('.filter-btn.active').dataset.filter);
+  } else { showToast('❌ ' + res.error, 'error'); }
+}
+
+async function eliminarResultado(matchId) {
+  if (!confirm('¿Borrar este resultado?')) return;
+  const res = await api('adminEliminarResultado', { userId: session.id, password: session.password, partidoId: matchId });
+  if (res.ok) {
+    delete resultadosReales[matchId];
+    showToast('🗑️ Borrado', 'success');
+    renderResultados(document.querySelector('.filter-btn.active').dataset.filter);
+  } else { showToast('❌ ' + res.error, 'error'); }
+}
+
+async function cargarAdmins() {
+  const cont = $('#adminsList');
+  const res = await api('adminListarAdmins', { userId: session.id, password: session.password });
+  if (!res.ok) { cont.innerHTML = `<div style="color:var(--danger)">${res.error}</div>`; return; }
+  if (!res.admins.length) { cont.innerHTML = '<div style="color:var(--grey);padding:1rem">Sin admins</div>'; return; }
+  cont.innerHTML = `<table class="usuarios-table"><thead><tr><th>Nombre</th><th>Email</th><th>Estado</th></tr></thead><tbody>${res.admins.map(a => `<tr><td><strong>${a.nombre || '-'}</strong></td><td>${a.email}</td><td><span class="estado-badge ${a.activo ? 'si' : 'no'}">${a.activo ? '✓ Activo' : '✗ Inactivo'}</span></td></tr>`).join('')}</tbody></table>`;
+}
+
+$('#btnAddAdmin').addEventListener('click', async () => {
+  const email = $('#newAdminEmail').value.trim();
+  const nombre = $('#newAdminNombre').value.trim();
+  if (!email) { showToast('❌ Falta email', 'error'); return; }
+  const res = await api('adminAgregarAdmin', { userId: session.id, password: session.password, nuevoEmail: email, nuevoNombre: nombre });
+  if (res.ok) { showToast('✅ Agregado', 'success'); $('#newAdminEmail').value = ''; $('#newAdminNombre').value = ''; cargarAdmins(); }
+  else { showToast('❌ ' + res.error, 'error'); }
+});
+
+$('#btnSaveFecha').addEventListener('click', async () => {
+  const fecha = $('#fechaCierre').value.trim();
+  if (!fecha) { showToast('❌ Falta fecha', 'error'); return; }
+  const res = await api('adminCambiarFechaCierre', { userId: session.id, password: session.password, nuevaFecha: fecha });
+  if (res.ok) showToast('✅ Fecha actualizada', 'success');
+  else showToast('❌ ' + res.error, 'error');
+});
+
+loadSession();
+if (session && session.id && session.password && session.admin) {
+  api('verificarUsuario', { userId: session.id, password: session.password }).then(res => {
+    if (res.ok && res.usuario.admin) {
+      session = { ...res.usuario, password: session.password };
+      saveSession();
+      enterApp();
+    } else clearSession();
+  }).catch(() => clearSession());
+}
+</script>
+</body>
+</html>
