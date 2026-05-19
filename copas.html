@@ -27,548 +27,240 @@
   --shadow: 0 4px 20px rgba(11, 25, 41, 0.08);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--light);
-  color: var(--dark);
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
+body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); min-height: 100vh; line-height: 1.5; }
 .header {
   background: linear-gradient(135deg, var(--celeste) 0%, var(--celeste-dark) 50%, var(--dark) 100%);
-  color: white;
-  padding: 1.8rem 1rem 2rem;
-  position: relative;
-  overflow: hidden;
+  color: white; padding: 1.8rem 1rem 2rem; position: relative; overflow: hidden;
   box-shadow: 0 4px 20px rgba(117, 170, 219, 0.4);
 }
 .header::before {
-  content: '';
-  position: absolute;
-  top: -60%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
+  content: ''; position: absolute; top: -60%; right: -10%;
+  width: 400px; height: 400px;
   background: radial-gradient(circle, var(--sol) 0%, transparent 65%);
-  opacity: 0.25;
-  border-radius: 50%;
+  opacity: 0.25; border-radius: 50%;
 }
 .header::after {
-  content: '🏆';
-  position: absolute;
-  bottom: -40px;
-  right: 20px;
-  font-size: 180px;
-  opacity: 0.08;
-  transform: rotate(-12deg);
+  content: '🏆'; position: absolute; bottom: -40px; right: 20px;
+  font-size: 180px; opacity: 0.08; transform: rotate(-12deg);
 }
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
+.header-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 .header h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
-  letter-spacing: -0.02em;
-  line-height: 1;
+  font-size: clamp(1.6rem, 4.5vw, 2.6rem); line-height: 1;
   text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
-.header .subtitle {
-  font-size: 0.9rem;
-  opacity: 0.95;
-  margin-top: 0.4rem;
-  font-weight: 500;
-}
+.header .subtitle { font-size: 0.9rem; opacity: 0.95; margin-top: 0.4rem; font-weight: 500; }
 .back-link {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 0.8rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.2s;
+  display: inline-block; background: rgba(255,255,255,0.2);
+  color: white; padding: 0.4rem 0.8rem; border-radius: 20px;
+  font-size: 0.8rem; font-weight: 600; text-decoration: none;
+  margin-bottom: 0.8rem; backdrop-filter: blur(10px);
 }
 .back-link:hover { background: rgba(255,255,255,0.3); }
-
-.user-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 1.2rem;
-  flex-wrap: wrap;
-}
+.user-bar { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.2rem; flex-wrap: wrap; }
 .user-input {
-  background: rgba(255,255,255,0.2);
-  border: 2px solid rgba(255,255,255,0.3);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 600;
-  outline: none;
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);
+  color: white; padding: 0.5rem 1rem; border-radius: 8px;
+  font-family: inherit; font-weight: 600; outline: none; backdrop-filter: blur(10px);
 }
 .user-input::placeholder { color: rgba(255,255,255,0.7); }
-.user-input:focus { background: rgba(255,255,255,0.3); border-color: var(--sol); }
-.stats-mini {
-  display: flex;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  flex-wrap: wrap;
-}
-.stat-pill {
-  background: rgba(255,255,255,0.15);
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-}
+.stats-mini { display: flex; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; flex-wrap: wrap; }
+.stat-pill { background: rgba(255,255,255,0.15); padding: 0.4rem 0.9rem; border-radius: 20px; backdrop-filter: blur(10px); }
 .stat-pill span { color: var(--sol); font-weight: 800; }
 
 .tabs {
-  background: white;
-  border-bottom: 1px solid var(--grey-light);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  background: white; border-bottom: 1px solid var(--grey-light);
+  position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
-.tabs-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 0 0.5rem;
-}
-.tabs-inner::-webkit-scrollbar { display: none; }
+.tabs-inner { max-width: 1200px; margin: 0 auto; display: flex; overflow-x: auto; padding: 0 0.5rem; }
 .tab {
-  background: none;
-  border: none;
-  padding: 1rem 1.2rem;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--grey);
-  cursor: pointer;
-  white-space: nowrap;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  background: none; border: none; padding: 1rem 1.2rem;
+  font-family: inherit; font-weight: 700; font-size: 0.85rem;
+  color: var(--grey); cursor: pointer; white-space: nowrap;
+  border-bottom: 3px solid transparent; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.05em;
 }
-.tab:hover { color: var(--celeste-dark); }
 .tab.active { color: var(--celeste-dark); border-bottom-color: var(--celeste); }
 
-.main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 6rem;
-}
+.main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 6rem; }
 .section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+  margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;
 }
 .section-title::before {
-  content: '';
-  width: 6px;
-  height: 28px;
-  background: linear-gradient(180deg, var(--celeste), var(--sol));
-  border-radius: 3px;
+  content: ''; width: 6px; height: 28px;
+  background: linear-gradient(180deg, var(--celeste), var(--sol)); border-radius: 3px;
 }
-.section-desc {
-  color: var(--grey);
-  font-size: 0.92rem;
-  margin-bottom: 1.5rem;
-  max-width: 700px;
-}
+.section-desc { color: var(--grey); font-size: 0.92rem; margin-bottom: 1.5rem; max-width: 700px; }
 
-.filter-bar {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
-  flex-wrap: wrap;
+.auto-update-bar {
+  background: linear-gradient(135deg, var(--dark), #1a3354);
+  color: white; padding: 1rem 1.2rem; border-radius: 12px;
+  margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
 }
+.auto-update-bar .info { font-size: 0.85rem; }
+.auto-update-bar .info strong { color: var(--sol); display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; }
+.auto-update-bar .info small { opacity: 0.8; font-size: 0.75rem; }
+.btn-update {
+  background: var(--sol); color: var(--dark); border: none;
+  padding: 0.7rem 1.2rem; border-radius: 8px;
+  font-family: inherit; font-weight: 800; font-size: 0.85rem;
+  cursor: pointer; text-transform: uppercase; transition: all 0.2s;
+}
+.btn-update:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5); }
+.btn-update:disabled { opacity: 0.6; cursor: wait; }
+
+.filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
 .filter-btn {
-  background: white;
-  border: 2px solid var(--grey-light);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  color: var(--grey);
-  transition: all 0.2s;
+  background: white; border: 2px solid var(--grey-light);
+  padding: 0.5rem 1rem; border-radius: 20px;
+  font-family: inherit; font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; color: var(--grey);
 }
-.filter-btn:hover { border-color: var(--celeste-dark); color: var(--celeste-dark); }
 .filter-btn.active { background: var(--celeste); color: white; border-color: var(--celeste); }
 .filter-btn.liber.active { background: var(--liber); border-color: var(--liber); }
 .filter-btn.suda.active { background: var(--suda); border-color: var(--suda); }
 
-.matches-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+.matches-container { display: flex; flex-direction: column; gap: 1.5rem; }
 .match-day-group {
-  background: white;
-  border-radius: 14px;
-  padding: 1.2rem 1rem;
-  box-shadow: var(--shadow);
+  background: white; border-radius: 14px;
+  padding: 1.2rem 1rem; box-shadow: var(--shadow);
 }
 .match-day-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+  margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
 }
 .match-day-title .date-badge {
-  background: var(--celeste);
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
+  background: var(--celeste); color: white;
+  font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700;
+  padding: 0.2rem 0.6rem; border-radius: 4px;
 }
 .match {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--grey-light);
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 0.6rem;
+  padding: 0.9rem 0; border-bottom: 1px solid var(--grey-light);
 }
 .match:last-child { border-bottom: none; }
 .match.is-liber { border-left: 3px solid var(--liber); padding-left: 0.6rem; margin-left: -0.6rem; }
 .match.is-suda { border-left: 3px solid var(--suda); padding-left: 0.6rem; margin-left: -0.6rem; }
 .match.is-arg {
   background: linear-gradient(90deg, rgba(117, 170, 219, 0.08), rgba(255, 215, 0, 0.05));
-  margin: 0 -1rem;
-  padding: 0.9rem 1rem;
+  margin: 0 -1rem; padding: 0.9rem 1rem;
 }
-
-.team-side {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 600;
-  font-size: 0.92rem;
-  min-width: 0;
-}
+.team-side { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.92rem; min-width: 0; }
 .team-side.home { justify-content: flex-end; text-align: right; flex-direction: row-reverse; }
 .team-side.away { justify-content: flex-start; }
 .team-shield {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--light);
-  border-radius: 50%;
-  border: 2px solid var(--grey-light);
-  overflow: hidden;
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--light); border-radius: 50%;
+  border: 2px solid var(--grey-light); overflow: hidden;
 }
-.team-shield img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 3px;
-}
-.team-shield .fallback {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.6rem;
-  color: var(--dark);
-  text-align: center;
-  line-height: 1;
-}
-.team-name {
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+.team-shield img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
+.team-shield .fallback { font-family: 'Archivo Black', sans-serif; font-size: 0.6rem; color: var(--dark); text-align: center; line-height: 1; }
+.team-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .team-name.is-arg {
   background: linear-gradient(90deg, #75AADB, #5A8FBF);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; font-weight: 800;
 }
-
 .vs-block { display: flex; align-items: center; flex-direction: column; gap: 0.3rem; }
 .vs-scores { display: flex; gap: 0.3rem; align-items: center; }
 .score-input {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.1rem;
-  border: 2px solid var(--grey-light);
-  border-radius: 8px;
-  background: var(--light);
-  outline: none;
-  -moz-appearance: textfield;
-  transition: all 0.2s;
+  width: 40px; height: 40px; text-align: center;
+  font-family: 'Archivo Black', sans-serif; font-size: 1.1rem;
+  border: 2px solid var(--grey-light); border-radius: 8px;
+  background: var(--light); outline: none;
+  -moz-appearance: textfield; transition: all 0.2s;
 }
-.score-input::-webkit-outer-spin-button,
-.score-input::-webkit-inner-spin-button {
-  -webkit-appearance: none; margin: 0;
-}
+.score-input::-webkit-outer-spin-button, .score-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .score-input:focus { border-color: var(--celeste); background: white; transform: scale(1.05); }
 .score-input.filled { border-color: var(--celeste); background: white; }
-.result-input { border-color: var(--win); }
 .result-input.filled { border-color: var(--win); background: #E8F8EE; }
-.vs-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem;
-  color: var(--grey);
-  letter-spacing: 0.1em;
-}
-.match-meta {
-  font-size: 0.7rem;
-  color: var(--grey);
-  margin-top: 0.3rem;
-  text-align: center;
-  font-weight: 500;
-}
+.result-input.auto { border-color: var(--sol-dark); background: #FFF9E6; }
+.vs-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; color: var(--grey); letter-spacing: 0.1em; }
+.match-meta { font-size: 0.7rem; color: var(--grey); margin-top: 0.3rem; text-align: center; font-weight: 500; }
 .match-meta strong { color: var(--dark); }
 .match-result {
-  background: var(--dark);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.78rem;
-  margin-top: 0.3rem;
+  background: var(--dark); color: white;
+  padding: 0.2rem 0.5rem; border-radius: 4px;
+  font-family: 'Archivo Black', sans-serif; font-size: 0.78rem; margin-top: 0.3rem;
 }
+.match-result.auto { background: var(--sol-dark); color: var(--dark); }
 .match-points {
-  display: inline-block;
-  margin-top: 0.3rem;
-  padding: 0.15rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 800;
+  display: inline-block; margin-top: 0.3rem;
+  padding: 0.15rem 0.6rem; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 800;
 }
 .match-points.zero { background: #FEE; color: var(--danger); }
 .match-points.partial { background: #FFF3E0; color: var(--warn); }
 .match-points.exact { background: #E8F8EE; color: var(--win); }
 .copa-tag {
-  display: inline-block;
-  font-size: 0.6rem;
-  font-weight: 800;
-  padding: 0.15rem 0.5rem;
-  border-radius: 4px;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  display: inline-block; font-size: 0.6rem; font-weight: 800;
+  padding: 0.15rem 0.5rem; border-radius: 4px; color: white; text-transform: uppercase;
 }
 .copa-tag.liber { background: var(--liber); }
 .copa-tag.suda { background: var(--suda); }
 
 .summary-card {
   background: linear-gradient(135deg, var(--dark) 0%, #1a3354 100%);
-  color: white;
-  padding: 1.8rem 1.5rem;
-  border-radius: 16px;
-  margin-bottom: 1.5rem;
-  position: relative;
-  overflow: hidden;
+  color: white; padding: 1.8rem 1.5rem; border-radius: 16px;
+  margin-bottom: 1.5rem; position: relative; overflow: hidden;
 }
-.summary-card::before {
-  content: '🇦🇷';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  font-size: 150px;
-  opacity: 0.1;
-  transform: rotate(-15deg);
-}
-.summary-card .total-points {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 3.5rem;
-  line-height: 1;
-  color: var(--sol);
-  text-align: center;
-}
-.summary-card .total-label {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 0.5rem;
-  font-weight: 600;
-  text-align: center;
-}
+.summary-card::before { content: '🇦🇷'; position: absolute; top: -20px; right: -20px; font-size: 150px; opacity: 0.1; }
+.summary-card .total-points { font-family: 'Archivo Black', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--sol); text-align: center; }
+.summary-card .total-label { font-size: 0.85rem; opacity: 0.9; text-transform: uppercase; margin-top: 0.5rem; font-weight: 600; text-align: center; }
 .breakdown {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  position: relative;
-  z-index: 1;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.8rem; margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15); position: relative; z-index: 1;
 }
 .breakdown-item { text-align: center; }
-.breakdown-item .num {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.6rem;
-}
-.breakdown-item .lbl {
-  font-size: 0.7rem;
-  opacity: 0.85;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 0.2rem;
-}
-
-.copa-summary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
+.breakdown-item .num { font-family: 'Archivo Black', sans-serif; font-size: 1.6rem; }
+.breakdown-item .lbl { font-size: 0.7rem; opacity: 0.85; text-transform: uppercase; margin-top: 0.2rem; }
+.copa-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .copa-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  text-align: center;
+  background: white; padding: 1.5rem; border-radius: 14px;
+  box-shadow: var(--shadow); text-align: center;
 }
 .copa-card.liber { border-top: 4px solid var(--liber); }
 .copa-card.suda { border-top: 4px solid var(--suda); }
-.copa-card .copa-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 0.3rem;
-}
+.copa-card .copa-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin-bottom: 0.3rem; }
 .copa-card.liber .copa-name { color: var(--liber); }
 .copa-card.suda .copa-name { color: var(--suda); }
-.copa-card .pts {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 2.5rem;
-  margin: 0.3rem 0;
-}
-.copa-card .extra {
-  font-size: 0.78rem;
-  color: var(--grey);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.equipos-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  margin-top: 1.5rem;
-}
-.equipos-card h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-}
-.equipos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
-}
-.equipo-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem;
-  background: var(--light);
-  border-radius: 8px;
-}
-.equipo-item .team-shield { width: 32px; height: 32px; }
-.equipo-item .equipo-info { font-size: 0.8rem; font-weight: 600; }
-.equipo-item .equipo-info small {
-  display: block;
-  color: var(--grey);
-  font-size: 0.7rem;
-  font-weight: 500;
-}
+.copa-card .pts { font-family: 'Archivo Black', sans-serif; font-size: 2.5rem; margin: 0.3rem 0; }
+.copa-card .extra { font-size: 0.78rem; color: var(--grey); text-transform: uppercase; }
 
 .action-bar {
-  position: sticky;
-  bottom: 1rem;
-  display: flex;
-  gap: 0.6rem;
-  justify-content: center;
-  margin-top: 2rem;
-  z-index: 50;
-  flex-wrap: wrap;
+  position: sticky; bottom: 1rem; display: flex; gap: 0.6rem;
+  justify-content: center; margin-top: 2rem; z-index: 50; flex-wrap: wrap;
 }
 .btn {
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.8rem 1.4rem;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  font-family: inherit; font-weight: 700; font-size: 0.85rem;
+  padding: 0.8rem 1.4rem; border-radius: 12px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.4rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  transition: all 0.2s;
 }
-.btn-primary {
-  background: linear-gradient(135deg, var(--celeste), var(--celeste-dark));
-  color: white;
-}
-.btn-primary:hover { transform: translateY(-2px); }
-.btn-secondary {
-  background: white;
-  color: var(--dark);
-  border: 2px solid var(--grey-light);
-}
-.btn-danger {
-  background: white;
-  color: var(--danger);
-  border: 2px solid var(--grey-light);
-}
+.btn-primary { background: linear-gradient(135deg, var(--celeste), var(--celeste-dark)); color: white; }
+.btn-secondary { background: white; color: var(--dark); border: 2px solid var(--grey-light); }
+.btn-danger { background: white; color: var(--danger); border: 2px solid var(--grey-light); }
 
 .toast {
-  position: fixed;
-  bottom: 5rem;
-  left: 50%;
+  position: fixed; bottom: 5rem; left: 50%;
   transform: translateX(-50%) translateY(120px);
-  background: var(--dark);
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  z-index: 1000;
-  transition: transform 0.3s;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  background: var(--dark); color: white;
+  padding: 0.8rem 1.5rem; border-radius: 8px;
+  font-weight: 600; font-size: 0.9rem; z-index: 1000;
+  transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 .toast.success { background: var(--win); }
 .toast.error { background: var(--danger); }
-
+.toast.info { background: var(--sol-dark); color: var(--dark); }
 .hidden { display: none !important; }
 
 @media (max-width: 640px) {
-  .match { grid-template-columns: 1fr auto 1fr; gap: 0.4rem; }
   .team-side { font-size: 0.78rem; gap: 0.4rem; }
   .team-shield { width: 30px; height: 30px; }
   .score-input { width: 34px; height: 34px; font-size: 0.95rem; }
@@ -584,7 +276,7 @@ body {
   <div class="header-content">
     <a href="index.html" class="back-link">← Volver al PRODE Mundial</a>
     <h1>PRODE COPAS 🇦🇷 🏆</h1>
-    <div class="subtitle">Equipos Argentinos · Libertadores + Sudamericana · Prueba pre-Mundial</div>
+    <div class="subtitle">Equipos Argentinos · Libertadores + Sudamericana · Fechas 5 y 6</div>
     <div class="user-bar">
       <input type="text" class="user-input" id="userName" placeholder="Tu nombre" maxlength="25">
       <div class="stats-mini">
@@ -607,56 +299,41 @@ body {
 
   <section id="tab-prode">
     <h2 class="section-title">PARTIDOS DE EQUIPOS ARGENTINOS</h2>
-    <p class="section-desc">Solo los partidos que juegan los 12 equipos argentinos en las copas. <strong>5 pts</strong> resultado exacto · <strong>2 pts</strong> acertar ganador o empate. Se guarda automáticamente.</p>
-
+    <p class="section-desc"><strong>5 pts</strong> resultado exacto · <strong>2 pts</strong> acertar ganador o empate. Cargá tus predicciones, se guardan automáticamente.</p>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn liber" data-filter="liber">🔴 Libertadores</button>
       <button class="filter-btn suda" data-filter="suda">🔵 Sudamericana</button>
     </div>
-
     <div id="prodeContainer" class="matches-container"></div>
   </section>
 
   <section id="tab-resultados" class="hidden">
     <h2 class="section-title">RESULTADOS REALES</h2>
-    <p class="section-desc">Cargá acá los resultados a medida que se juegan los partidos.</p>
+    <p class="section-desc">Tocá <strong>"Actualizar"</strong> para buscar los resultados en TheSportsDB. También podés cargarlos a mano.</p>
+    <div class="auto-update-bar">
+      <div class="info">
+        <strong id="lastUpdate">Sin actualizar aún</strong>
+        <small>🤖 Los amarillos son automáticos · Podés sobreescribirlos a mano</small>
+      </div>
+      <button class="btn-update" id="btnAutoUpdate">🔄 Actualizar</button>
+    </div>
     <div id="resultadosContainer" class="matches-container"></div>
   </section>
 
   <section id="tab-resumen" class="hidden">
     <h2 class="section-title">MI RESUMEN</h2>
-    <p class="section-desc">Tu performance con los equipos argentinos.</p>
-
     <div class="summary-card">
       <div class="total-points" id="resumenTotal">0</div>
       <div class="total-label">Puntos totales 🇦🇷</div>
       <div class="breakdown">
-        <div class="breakdown-item">
-          <div class="num" id="resumenExactos">0</div>
-          <div class="lbl">Exactos (5)</div>
-        </div>
-        <div class="breakdown-item">
-          <div class="num" id="resumenParciales">0</div>
-          <div class="lbl">Ganador (2)</div>
-        </div>
-        <div class="breakdown-item">
-          <div class="num" id="resumenErrados">0</div>
-          <div class="lbl">Errados (0)</div>
-        </div>
-        <div class="breakdown-item">
-          <div class="num" id="resumenPendientes">0</div>
-          <div class="lbl">Sin jugar</div>
-        </div>
+        <div class="breakdown-item"><div class="num" id="resumenExactos">0</div><div class="lbl">Exactos (5)</div></div>
+        <div class="breakdown-item"><div class="num" id="resumenParciales">0</div><div class="lbl">Ganador (2)</div></div>
+        <div class="breakdown-item"><div class="num" id="resumenErrados">0</div><div class="lbl">Errados (0)</div></div>
+        <div class="breakdown-item"><div class="num" id="resumenPendientes">0</div><div class="lbl">Sin jugar</div></div>
       </div>
     </div>
-
     <div class="copa-summary" id="copaSummary"></div>
-
-    <div class="equipos-card">
-      <h3>🇦🇷 Equipos Argentinos en competencia</h3>
-      <div class="equipos-grid" id="equiposGrid"></div>
-    </div>
   </section>
 
   <div class="action-bar">
@@ -672,174 +349,147 @@ body {
 <script>
 // ============ EQUIPOS ============
 const TEAMS = {
-  // ARGENTINOS - LIBERTADORES
-  'BOCA':       { name: 'Boca Juniors',        short: 'BOC',  arg: true, copa: 'liber', grupo: 'D', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Boca_Juniors_logo.svg/200px-Boca_Juniors_logo.svg.png' },
-  'ESTUDIANTES':{ name: 'Estudiantes',         short: 'EDLP', arg: true, copa: 'liber', grupo: 'A', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Estudiantes_de_La_Plata_official_crest.svg/200px-Estudiantes_de_La_Plata_official_crest.svg.png' },
-  'PLATENSE':   { name: 'Platense',            short: 'PLA',  arg: true, copa: 'liber', grupo: 'E', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Club_Atl%C3%A9tico_Platense_logo.svg/200px-Club_Atl%C3%A9tico_Platense_logo.svg.png' },
-  'INDRIV':     { name: 'Independiente Riv.',  short: 'IND-R',arg: true, copa: 'liber', grupo: 'C', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Club_Sportivo_Independiente_Rivadavia.png/200px-Club_Sportivo_Independiente_Rivadavia.png' },
-  'CENTRAL':    { name: 'Rosario Central',     short: 'RC',   arg: true, copa: 'liber', grupo: 'H', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rosario_Central_logo.svg/200px-Rosario_Central_logo.svg.png' },
-  'LANUS':      { name: 'Lanús',               short: 'LAN',  arg: true, copa: 'liber', grupo: 'G', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Escudo_del_Club_Atl%C3%A9tico_Lan%C3%BAs.svg/200px-Escudo_del_Club_Atl%C3%A9tico_Lan%C3%BAs.svg.png' },
-
-  // ARGENTINOS - SUDAMERICANA
-  'RIVER':      { name: 'River Plate',         short: 'RIV',  arg: true, copa: 'suda',  grupo: 'H', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Escudo_del_Club_Atl%C3%A9tico_River_Plate.svg/200px-Escudo_del_Club_Atl%C3%A9tico_River_Plate.svg.png' },
-  'RACING':     { name: 'Racing Club',         short: 'RAC',  arg: true, copa: 'suda',  grupo: 'E', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Racing_Club_de_Avellaneda_-_Logo.svg/200px-Racing_Club_de_Avellaneda_-_Logo.svg.png' },
-  'SANLORENZO': { name: 'San Lorenzo',         short: 'SL',   arg: true, copa: 'suda',  grupo: 'D', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Escudo_del_Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro.svg/200px-Escudo_del_Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro.svg.png' },
-  'TIGRE':      { name: 'Tigre',               short: 'TIG',  arg: true, copa: 'suda',  grupo: 'A', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Tigre_logo.svg/200px-Tigre_logo.svg.png' },
-  'RIESTRA':    { name: 'Dep. Riestra',        short: 'RIE',  arg: true, copa: 'suda',  grupo: 'F', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Deportivo_Riestra_logo.png/200px-Deportivo_Riestra_logo.png' },
-  'BARRACAS':   { name: 'Barracas Central',    short: 'BAR',  arg: true, copa: 'suda',  grupo: 'G', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Barracas_Central_logo.png/200px-Barracas_Central_logo.png' },
-
-  // RIVALES LIBERTADORES
-  'FLAMENGO':   { name: 'Flamengo',         short: 'FLA', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flamengo_braz_logo.svg/200px-Flamengo_braz_logo.svg.png' },
-  'CUSCO':      { name: 'Cusco FC',         short: 'CUS', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cusco_FC_logo.png/200px-Cusco_FC_logo.png' },
-  'MEDELLIN':   { name: 'Ind. Medellín',    short: 'DIM', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Independiente_Medell%C3%ADn_logo.png/200px-Independiente_Medell%C3%ADn_logo.png' },
-  'UCATOLICA':  { name: 'U. Católica',      short: 'UC',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Universidad_Cat%C3%B3lica_logo.svg/200px-Universidad_Cat%C3%B3lica_logo.svg.png' },
-  'CRUZEIRO':   { name: 'Cruzeiro',         short: 'CRU', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cruzeiro_Esporte_Clube_%28logo%29.svg/200px-Cruzeiro_Esporte_Clube_%28logo%29.svg.png' },
-  'BARCELONA':  { name: 'Barcelona (Ecu)',  short: 'BSC', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Barcelona_Sporting_Club_logo.svg/200px-Barcelona_Sporting_Club_logo.svg.png' },
-  'FLUMINENSE': { name: 'Fluminense',       short: 'FLU', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FFC_crest.svg/200px-FFC_crest.svg.png' },
-  'BOLIVAR':    { name: 'Bolívar',          short: 'BOL', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Club_Bol%C3%ADvar_logo.svg/200px-Club_Bol%C3%ADvar_logo.svg.png' },
-  'LAGUAIRA':   { name: 'La Guaira',        short: 'LG',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Deportivo_La_Guaira_logo.svg/200px-Deportivo_La_Guaira_logo.svg.png' },
-  'PENAROL':    { name: 'Peñarol',          short: 'PEÑ', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pe%C3%B1arol_logo.svg/200px-Pe%C3%B1arol_logo.svg.png' },
-  'CORINTHIANS':{ name: 'Corinthians',      short: 'COR', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Corinthians_simbolo.png/200px-Corinthians_simbolo.png' },
-  'SANTAFE':    { name: 'Santa Fe',         short: 'SF',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Independiente_Santa_Fe_logo.svg/200px-Independiente_Santa_Fe_logo.svg.png' },
-  'LDU':        { name: 'Liga de Quito',    short: 'LDU', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/LDU_Quito_logo.svg/200px-LDU_Quito_logo.svg.png' },
-  'ALWAYS':     { name: 'Always Ready',     short: 'AR',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Club_Always_Ready_logo.svg/200px-Club_Always_Ready_logo.svg.png' },
-  'MIRASSOL':   { name: 'Mirassol',         short: 'MIR', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Mirassol_FC_logo.png/200px-Mirassol_FC_logo.png' },
-  'INDVALLE':   { name: 'Ind. del Valle',   short: 'IDV', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Independiente_del_Valle_logo.svg/200px-Independiente_del_Valle_logo.svg.png' },
-  'LIBERTAD':   { name: 'Libertad',         short: 'LIB', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Club_Libertad_de_Paraguay.svg/200px-Club_Libertad_de_Paraguay.svg.png' },
-  'UCV':        { name: 'U. Central',       short: 'UCV', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Universidad_Central_de_Venezuela_FC_logo.png/200px-Universidad_Central_de_Venezuela_FC_logo.png' },
-
-  // RIVALES SUDAMERICANA
-  'BRAGANTINO': { name: 'RB Bragantino',    short: 'BRA', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Red_Bull_Bragantino_logo.svg/200px-Red_Bull_Bragantino_logo.svg.png' },
-  'BLOOMING':   { name: 'Blooming',         short: 'BLO', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Blooming_logo.png/200px-Blooming_logo.png' },
-  'CARABOBO':   { name: 'Carabobo',         short: 'CAR', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Carabobo_FC_logo.svg/200px-Carabobo_FC_logo.svg.png' },
-  'CARACAS':    { name: 'Caracas',          short: 'CCS', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Caracas_FC_logo.svg/200px-Caracas_FC_logo.svg.png' },
-  'INDBOL':     { name: 'Independiente Bol',short: 'IB',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Club_Independiente_Petrolero.png/200px-Club_Independiente_Petrolero.png' },
-  'BOTAFOGO':   { name: 'Botafogo',         short: 'BOT', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Botafogo_de_Futebol_e_Regatas_logo.svg/200px-Botafogo_de_Futebol_e_Regatas_logo.svg.png' },
-  'SANTOS':     { name: 'Santos',           short: 'SAN', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Santos_FC_logo.svg/200px-Santos_FC_logo.svg.png' },
-  'CUENCA':     { name: 'Dep. Cuenca',      short: 'CUE', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Deportivo_Cuenca_logo.svg/200px-Deportivo_Cuenca_logo.svg.png' },
-  'RECOLETA':   { name: 'Recoleta',         short: 'REC', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Club_Atl%C3%A9tico_3_de_Febrero.png/200px-Club_Atl%C3%A9tico_3_de_Febrero.png' },
-  'AMERICA':    { name: 'América de Cali',  short: 'AME', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/America_de_Cali_logo.svg/200px-America_de_Cali_logo.svg.png' },
-  'MACARA':     { name: 'Macará',           short: 'MAC', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/CSD_Macar%C3%A1.png/200px-CSD_Macar%C3%A1.png' },
-  'ALIANZAPER': { name: 'Alianza Atlético', short: 'AA',  arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Alianza_Atletico_logo.png/200px-Alianza_Atletico_logo.png' },
-  'GREMIO':     { name: 'Gremio',           short: 'GRE', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Gremio_FBPA.svg/200px-Gremio_FBPA.svg.png' },
-  'PALESTINO':  { name: 'Palestino',        short: 'PAL', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Club_Deportivo_Palestino_logo.svg/200px-Club_Deportivo_Palestino_logo.svg.png' },
-  'MCTORQUE':   { name: 'MC Torque',        short: 'MCT', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Montevideo_City_Torque_logo.svg/200px-Montevideo_City_Torque_logo.svg.png' },
-  'OLIMPIA':    { name: 'Olimpia',          short: 'OLI', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Club_Olimpia_logo.svg/200px-Club_Olimpia_logo.svg.png' },
-  'VASCO':      { name: 'Vasco da Gama',    short: 'VSC', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Vasco_da_Gama_logo.svg/200px-Vasco_da_Gama_logo.svg.png' },
-  'AUDAX':      { name: 'Audax Italiano',   short: 'AUD', arg: false, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Audax_Italiano_logo.svg/200px-Audax_Italiano_logo.svg.png' }
+  // ARG LIBERTADORES
+  'BOCA':       { name: 'Boca Juniors',        short: 'BOC',  arg: true,  copa: 'liber', apiName: 'Boca Juniors',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Boca_Juniors_logo.svg/200px-Boca_Juniors_logo.svg.png' },
+  'ESTUDIANTES':{ name: 'Estudiantes',         short: 'EDLP', arg: true,  copa: 'liber', apiName: 'Estudiantes',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Estudiantes_de_La_Plata_official_crest.svg/200px-Estudiantes_de_La_Plata_official_crest.svg.png' },
+  'PLATENSE':   { name: 'Platense',            short: 'PLA',  arg: true,  copa: 'liber', apiName: 'Platense',               logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Club_Atl%C3%A9tico_Platense_logo.svg/200px-Club_Atl%C3%A9tico_Platense_logo.svg.png' },
+  'INDRIV':     { name: 'Ind. Rivadavia',      short: 'IND-R',arg: true,  copa: 'liber', apiName: 'Independiente Rivadavia',logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Club_Sportivo_Independiente_Rivadavia.png/200px-Club_Sportivo_Independiente_Rivadavia.png' },
+  'CENTRAL':    { name: 'Rosario Central',     short: 'RC',   arg: true,  copa: 'liber', apiName: 'Rosario Central',        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rosario_Central_logo.svg/200px-Rosario_Central_logo.svg.png' },
+  'LANUS':      { name: 'Lanús',               short: 'LAN',  arg: true,  copa: 'liber', apiName: 'Lanus',                  logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Escudo_del_Club_Atl%C3%A9tico_Lan%C3%BAs.svg/200px-Escudo_del_Club_Atl%C3%A9tico_Lan%C3%BAs.svg.png' },
+  // ARG SUDAMERICANA
+  'RIVER':      { name: 'River Plate',         short: 'RIV',  arg: true,  copa: 'suda',  apiName: 'River Plate',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Escudo_del_Club_Atl%C3%A9tico_River_Plate.svg/200px-Escudo_del_Club_Atl%C3%A9tico_River_Plate.svg.png' },
+  'RACING':     { name: 'Racing Club',         short: 'RAC',  arg: true,  copa: 'suda',  apiName: 'Racing Club',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Racing_Club_de_Avellaneda_-_Logo.svg/200px-Racing_Club_de_Avellaneda_-_Logo.svg.png' },
+  'SANLORENZO': { name: 'San Lorenzo',         short: 'SL',   arg: true,  copa: 'suda',  apiName: 'San Lorenzo',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Escudo_del_Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro.svg/200px-Escudo_del_Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro.svg.png' },
+  'TIGRE':      { name: 'Tigre',               short: 'TIG',  arg: true,  copa: 'suda',  apiName: 'Tigre',                  logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Tigre_logo.svg/200px-Tigre_logo.svg.png' },
+  'RIESTRA':    { name: 'Dep. Riestra',        short: 'RIE',  arg: true,  copa: 'suda',  apiName: 'Deportivo Riestra',      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Deportivo_Riestra_logo.png/200px-Deportivo_Riestra_logo.png' },
+  'BARRACAS':   { name: 'Barracas Central',    short: 'BAR',  arg: true,  copa: 'suda',  apiName: 'Barracas Central',       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Barracas_Central_logo.png/200px-Barracas_Central_logo.png' },
+  // RIVALES
+  'FLAMENGO':   { name: 'Flamengo',         short: 'FLA', arg: false, apiName: 'Flamengo',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flamengo_braz_logo.svg/200px-Flamengo_braz_logo.svg.png' },
+  'CUSCO':      { name: 'Cusco FC',         short: 'CUS', arg: false, apiName: 'Cusco',              logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Cusco_FC_logo.png/200px-Cusco_FC_logo.png' },
+  'MEDELLIN':   { name: 'Ind. Medellín',    short: 'DIM', arg: false, apiName: 'Independiente Medellin', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Independiente_Medell%C3%ADn_logo.png/200px-Independiente_Medell%C3%ADn_logo.png' },
+  'UCATOLICA':  { name: 'U. Católica',      short: 'UC',  arg: false, apiName: 'Universidad Catolica', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Universidad_Cat%C3%B3lica_logo.svg/200px-Universidad_Cat%C3%B3lica_logo.svg.png' },
+  'CRUZEIRO':   { name: 'Cruzeiro',         short: 'CRU', arg: false, apiName: 'Cruzeiro',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cruzeiro_Esporte_Clube_%28logo%29.svg/200px-Cruzeiro_Esporte_Clube_%28logo%29.svg.png' },
+  'BARCELONA':  { name: 'Barcelona (Ecu)',  short: 'BSC', arg: false, apiName: 'Barcelona SC',       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Barcelona_Sporting_Club_logo.svg/200px-Barcelona_Sporting_Club_logo.svg.png' },
+  'FLUMINENSE': { name: 'Fluminense',       short: 'FLU', arg: false, apiName: 'Fluminense',         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/FFC_crest.svg/200px-FFC_crest.svg.png' },
+  'BOLIVAR':    { name: 'Bolívar',          short: 'BOL', arg: false, apiName: 'Bolivar',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Club_Bol%C3%ADvar_logo.svg/200px-Club_Bol%C3%ADvar_logo.svg.png' },
+  'LAGUAIRA':   { name: 'La Guaira',        short: 'LG',  arg: false, apiName: 'Deportivo La Guaira', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Deportivo_La_Guaira_logo.svg/200px-Deportivo_La_Guaira_logo.svg.png' },
+  'PENAROL':    { name: 'Peñarol',          short: 'PEÑ', arg: false, apiName: 'Penarol',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Pe%C3%B1arol_logo.svg/200px-Pe%C3%B1arol_logo.svg.png' },
+  'CORINTHIANS':{ name: 'Corinthians',      short: 'COR', arg: false, apiName: 'Corinthians',        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Corinthians_simbolo.png/200px-Corinthians_simbolo.png' },
+  'SANTAFE':    { name: 'Santa Fe',         short: 'SF',  arg: false, apiName: 'Santa Fe',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Independiente_Santa_Fe_logo.svg/200px-Independiente_Santa_Fe_logo.svg.png' },
+  'LDU':        { name: 'Liga de Quito',    short: 'LDU', arg: false, apiName: 'LDU Quito',          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/LDU_Quito_logo.svg/200px-LDU_Quito_logo.svg.png' },
+  'ALWAYS':     { name: 'Always Ready',     short: 'AR',  arg: false, apiName: 'Always Ready',       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Club_Always_Ready_logo.svg/200px-Club_Always_Ready_logo.svg.png' },
+  'MIRASSOL':   { name: 'Mirassol',         short: 'MIR', arg: false, apiName: 'Mirassol',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Mirassol_FC_logo.png/200px-Mirassol_FC_logo.png' },
+  'INDVALLE':   { name: 'Ind. del Valle',   short: 'IDV', arg: false, apiName: 'Independiente del Valle', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Independiente_del_Valle_logo.svg/200px-Independiente_del_Valle_logo.svg.png' },
+  'LIBERTAD':   { name: 'Libertad',         short: 'LIB', arg: false, apiName: 'Libertad',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Club_Libertad_de_Paraguay.svg/200px-Club_Libertad_de_Paraguay.svg.png' },
+  'UCV':        { name: 'U. Central',       short: 'UCV', arg: false, apiName: 'Universidad Central', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Universidad_Central_de_Venezuela_FC_logo.png/200px-Universidad_Central_de_Venezuela_FC_logo.png' },
+  // RIVALES SUDA
+  'BRAGANTINO': { name: 'RB Bragantino',    short: 'BRA', arg: false, apiName: 'Bragantino',         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Red_Bull_Bragantino_logo.svg/200px-Red_Bull_Bragantino_logo.svg.png' },
+  'BLOOMING':   { name: 'Blooming',         short: 'BLO', arg: false, apiName: 'Blooming',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Blooming_logo.png/200px-Blooming_logo.png' },
+  'CARABOBO':   { name: 'Carabobo',         short: 'CAR', arg: false, apiName: 'Carabobo',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Carabobo_FC_logo.svg/200px-Carabobo_FC_logo.svg.png' },
+  'CARACAS':    { name: 'Caracas',          short: 'CCS', arg: false, apiName: 'Caracas',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Caracas_FC_logo.svg/200px-Caracas_FC_logo.svg.png' },
+  'INDBOL':     { name: 'Ind. Petrolero',   short: 'IP',  arg: false, apiName: 'Independiente Petrolero', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Club_Independiente_Petrolero.png/200px-Club_Independiente_Petrolero.png' },
+  'BOTAFOGO':   { name: 'Botafogo',         short: 'BOT', arg: false, apiName: 'Botafogo',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Botafogo_de_Futebol_e_Regatas_logo.svg/200px-Botafogo_de_Futebol_e_Regatas_logo.svg.png' },
+  'SANTOS':     { name: 'Santos',           short: 'SAN', arg: false, apiName: 'Santos',             logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Santos_FC_logo.svg/200px-Santos_FC_logo.svg.png' },
+  'CUENCA':     { name: 'Dep. Cuenca',      short: 'CUE', arg: false, apiName: 'Deportivo Cuenca',   logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Deportivo_Cuenca_logo.svg/200px-Deportivo_Cuenca_logo.svg.png' },
+  'RECOLETA':   { name: 'Recoleta',         short: 'REC', arg: false, apiName: 'Recoleta',           logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Club_Atl%C3%A9tico_3_de_Febrero.png/200px-Club_Atl%C3%A9tico_3_de_Febrero.png' },
+  'AMERICA':    { name: 'América de Cali',  short: 'AME', arg: false, apiName: 'America de Cali',    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/America_de_Cali_logo.svg/200px-America_de_Cali_logo.svg.png' },
+  'MACARA':     { name: 'Macará',           short: 'MAC', arg: false, apiName: 'Macara',             logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/CSD_Macar%C3%A1.png/200px-CSD_Macar%C3%A1.png' },
+  'ALIANZAPER': { name: 'Alianza Atlético', short: 'AA',  arg: false, apiName: 'Alianza Atletico',   logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Alianza_Atletico_logo.png/200px-Alianza_Atletico_logo.png' },
+  'GREMIO':     { name: 'Gremio',           short: 'GRE', arg: false, apiName: 'Gremio',             logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Gremio_FBPA.svg/200px-Gremio_FBPA.svg.png' },
+  'PALESTINO':  { name: 'Palestino',        short: 'PAL', arg: false, apiName: 'Palestino',          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Club_Deportivo_Palestino_logo.svg/200px-Club_Deportivo_Palestino_logo.svg.png' },
+  'MCTORQUE':   { name: 'MC Torque',        short: 'MCT', arg: false, apiName: 'Montevideo City Torque', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Montevideo_City_Torque_logo.svg/200px-Montevideo_City_Torque_logo.svg.png' },
+  'OLIMPIA':    { name: 'Olimpia',          short: 'OLI', arg: false, apiName: 'Olimpia',            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Club_Olimpia_logo.svg/200px-Club_Olimpia_logo.svg.png' },
+  'VASCO':      { name: 'Vasco da Gama',    short: 'VSC', arg: false, apiName: 'Vasco da Gama',      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Vasco_da_Gama_logo.svg/200px-Vasco_da_Gama_logo.svg.png' },
+  'AUDAX':      { name: 'Audax Italiano',   short: 'AUD', arg: false, apiName: 'Audax Italiano',     logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Audax_Italiano_logo.svg/200px-Audax_Italiano_logo.svg.png' }
 };
 
-// ============ PARTIDOS DE EQUIPOS ARGENTINOS - FECHAS 5 Y 6 ============
-// Aviso: emparejamientos estimados según los grupos. Horarios pueden ajustarse.
+// ============ FIXTURE VERIFICADO - Solo partidos con equipos argentinos ============
+// Datos cruzados de AFA, ESPN, Bolavip, sitios oficiales de clubes
+// Horarios en hora Argentina (UTC-3)
 const MATCHES = [
-  // ===== LIBERTADORES Fecha 5 (20-23 mayo) =====
-  // Grupo A: Flamengo, Estudiantes, Cusco, Medellín
-  { id: 1, copa: 'liber', date: '20 may', time: '19:00', home: 'CUSCO',       away: 'MEDELLIN' },
-  { id: 2, copa: 'liber', date: '20 may', time: '21:30', home: 'FLAMENGO',    away: 'ESTUDIANTES' },
-  // Grupo C: Fluminense, Bolívar, La Guaira, Ind. Rivadavia
-  { id: 3, copa: 'liber', date: '21 may', time: '21:30', home: 'BOLIVAR',     away: 'FLUMINENSE' },
-  { id: 4, copa: 'liber', date: '21 may', time: '21:30', home: 'INDRIV',      away: 'LAGUAIRA' },
-  // Grupo D: Boca, Cruzeiro, U. Católica, Barcelona
-  { id: 5, copa: 'liber', date: '22 may', time: '19:00', home: 'BOCA',        away: 'UCATOLICA' },
-  { id: 6, copa: 'liber', date: '22 may', time: '21:30', home: 'BARCELONA',   away: 'CRUZEIRO' },
-  // Grupo E: Peñarol, Corinthians, Santa Fe, Platense
-  { id: 7, copa: 'liber', date: '22 may', time: '21:30', home: 'PENAROL',     away: 'PLATENSE' },
-  { id: 8, copa: 'liber', date: '22 may', time: '21:30', home: 'CORINTHIANS', away: 'SANTAFE' },
-  // Grupo G: LDU, Lanús, Always Ready, Mirassol
-  { id: 9, copa: 'liber', date: '23 may', time: '21:30', home: 'LDU',         away: 'LANUS' },
-  { id: 10,copa: 'liber', date: '23 may', time: '21:30', home: 'ALWAYS',      away: 'MIRASSOL' },
-  // Grupo H: IDV, Libertad, Rosario Central, U. Central
-  { id: 11,copa: 'liber', date: '23 may', time: '21:30', home: 'LIBERTAD',    away: 'CENTRAL' },
-  { id: 12,copa: 'liber', date: '23 may', time: '21:30', home: 'INDVALLE',    away: 'UCV' },
+  // ===== FECHA 5 LIBERTADORES (19-22 mayo) =====
+  // Grupo H - Rosario Central
+  { id: 1, copa: 'liber', date: '19 may', time: '18:00', home: 'CENTRAL',     away: 'UCV',         venue: 'Gigante de Arroyito' },
+  // Grupo E - Platense
+  { id: 2, copa: 'liber', date: '19 may', time: '20:00', home: 'SANTAFE',     away: 'PLATENSE',    venue: 'El Campín, Bogotá' },
+  // Grupo D - Boca
+  { id: 3, copa: 'liber', date: '19 may', time: '21:30', home: 'BOCA',        away: 'CRUZEIRO',    venue: 'La Bombonera' },
+  // Grupo G - Lanús
+  { id: 4, copa: 'liber', date: '20 may', time: '20:30', home: 'LDU',         away: 'LANUS',       venue: 'Rodrigo Paz Delgado, Quito' },
+  // Grupo A - Estudiantes
+  { id: 5, copa: 'liber', date: '20 may', time: '20:30', home: 'FLAMENGO',    away: 'ESTUDIANTES', venue: 'Maracaná, Río de Janeiro' },
+  // Grupo C - Ind. Rivadavia
+  { id: 6, copa: 'liber', date: '21 may', time: '18:00', home: 'LAGUAIRA',    away: 'INDRIV',      venue: 'Olímpico de la UCV, Caracas' },
 
-  // ===== LIBERTADORES Fecha 6 (27-30 mayo) =====
-  // Grupo A
-  { id: 13,copa: 'liber', date: '27 may', time: '19:00', home: 'ESTUDIANTES', away: 'CUSCO' },
-  { id: 14,copa: 'liber', date: '27 may', time: '21:30', home: 'MEDELLIN',    away: 'FLAMENGO' },
-  // Grupo C
-  { id: 15,copa: 'liber', date: '28 may', time: '21:30', home: 'FLUMINENSE',  away: 'LAGUAIRA' },
-  { id: 16,copa: 'liber', date: '28 may', time: '21:30', home: 'INDRIV',      away: 'BOLIVAR' },
-  // Grupo D
-  { id: 17,copa: 'liber', date: '28 may', time: '21:30', home: 'UCATOLICA',   away: 'BARCELONA' },
-  { id: 18,copa: 'liber', date: '28 may', time: '21:30', home: 'CRUZEIRO',    away: 'BOCA' },
-  // Grupo E
-  { id: 19,copa: 'liber', date: '29 may', time: '21:30', home: 'PLATENSE',    away: 'CORINTHIANS' },
-  { id: 20,copa: 'liber', date: '29 may', time: '21:30', home: 'SANTAFE',     away: 'PENAROL' },
-  // Grupo G
-  { id: 21,copa: 'liber', date: '29 may', time: '21:30', home: 'LANUS',       away: 'MIRASSOL' },
-  { id: 22,copa: 'liber', date: '29 may', time: '21:30', home: 'ALWAYS',      away: 'LDU' },
-  // Grupo H
-  { id: 23,copa: 'liber', date: '30 may', time: '21:30', home: 'CENTRAL',     away: 'INDVALLE' },
-  { id: 24,copa: 'liber', date: '30 may', time: '21:30', home: 'UCV',         away: 'LIBERTAD' },
+  // ===== FECHA 5 SUDAMERICANA (19-21 mayo) =====
+  // Grupo G - Barracas Central
+  { id: 7, copa: 'suda', date: '20 may', time: '21:00', home: 'BARRACAS',    away: 'AUDAX',       venue: 'Estadio Claudio Tapia' },
+  // Grupo D - San Lorenzo
+  { id: 8, copa: 'suda', date: '21 may', time: '19:00', home: 'SANLORENZO',  away: 'SANTOS',      venue: 'Nuevo Gasómetro' },
+  // Grupo E - Racing
+  { id: 9, copa: 'suda', date: '21 may', time: '21:30', home: 'BOTAFOGO',    away: 'RACING',      venue: 'Nilton Santos, Río' },
+  // Grupo H - River
+  { id: 10,copa: 'suda', date: '21 may', time: '21:30', home: 'BRAGANTINO',  away: 'RIVER',       venue: 'Cícero de Souza, Bragança' },
+  // Grupo A - Tigre
+  { id: 11,copa: 'suda', date: '21 may', time: '21:00', home: 'MACARA',      away: 'TIGRE',       venue: 'Bellavista, Ambato' },
+  // Grupo F - Riestra
+  { id: 12,copa: 'suda', date: '21 may', time: '19:00', home: 'GREMIO',      away: 'RIESTRA',     venue: 'Arena do Grêmio' },
 
-  // ===== SUDAMERICANA Fecha 5 (20-22 mayo) =====
-  // Grupo A: América Cali, Tigre, Macará, Alianza Atl.
-  { id: 25,copa: 'suda', date: '20 may', time: '19:00', home: 'TIGRE',       away: 'MACARA' },
-  { id: 26,copa: 'suda', date: '20 may', time: '21:00', home: 'AMERICA',     away: 'ALIANZAPER' },
-  // Grupo D: Santos, San Lorenzo, Cuenca, Recoleta
-  { id: 27,copa: 'suda', date: '21 may', time: '19:00', home: 'SANLORENZO',  away: 'CUENCA' },
-  { id: 28,copa: 'suda', date: '21 may', time: '21:30', home: 'SANTOS',      away: 'RECOLETA' },
-  // Grupo E: Racing, Caracas, Indep Bol, Botafogo
-  { id: 29,copa: 'suda', date: '21 may', time: '19:00', home: 'RACING',      away: 'INDBOL' },
-  { id: 30,copa: 'suda', date: '21 may', time: '21:30', home: 'BOTAFOGO',    away: 'CARACAS' },
-  // Grupo F: Gremio, Palestino, MC Torque, Riestra
-  { id: 31,copa: 'suda', date: '22 may', time: '19:00', home: 'GREMIO',      away: 'RIESTRA' },
-  { id: 32,copa: 'suda', date: '22 may', time: '21:00', home: 'PALESTINO',   away: 'MCTORQUE' },
-  // Grupo G: Olimpia, Vasco, Audax, Barracas
-  { id: 33,copa: 'suda', date: '22 may', time: '19:00', home: 'BARRACAS',    away: 'AUDAX' },
-  { id: 34,copa: 'suda', date: '22 may', time: '21:30', home: 'OLIMPIA',     away: 'VASCO' },
-  // Grupo H: River, Bragantino, Blooming, Carabobo
-  { id: 35,copa: 'suda', date: '21 may', time: '21:30', home: 'RIVER',       away: 'BLOOMING' },
-  { id: 36,copa: 'suda', date: '21 may', time: '19:00', home: 'BRAGANTINO',  away: 'CARABOBO' },
+  // ===== FECHA 6 LIBERTADORES (26-28 mayo) =====
+  // Grupo H - Rosario Central (visitante)
+  { id: 13,copa: 'liber', date: '28 may', time: '19:00', home: 'INDVALLE',    away: 'CENTRAL',     venue: 'Banco Guayaquil, Quito' },
+  // Grupo E - Platense (visitante)
+  { id: 14,copa: 'liber', date: '28 may', time: '19:00', home: 'PENAROL',     away: 'PLATENSE',    venue: 'Campeón del Siglo, Montevideo' },
+  // Grupo D - Boca (visitante)
+  { id: 15,copa: 'liber', date: '28 may', time: '23:00', home: 'UCATOLICA',   away: 'BOCA',        venue: 'San Carlos de Apoquindo, Santiago' },
+  // Grupo G - Lanús (local)
+  { id: 16,copa: 'liber', date: '27 may', time: '21:30', home: 'LANUS',       away: 'ALWAYS',      venue: 'La Fortaleza, Lanús' },
+  // Grupo A - Estudiantes (local)
+  { id: 17,copa: 'liber', date: '26 may', time: '21:30', home: 'ESTUDIANTES', away: 'CUSCO',       venue: 'UNO, La Plata' },
+  // Grupo C - Ind. Rivadavia (local)
+  { id: 18,copa: 'liber', date: '27 may', time: '21:30', home: 'INDRIV',      away: 'FLUMINENSE',  venue: 'Malvinas Argentinas, Mendoza' },
 
-  // ===== SUDAMERICANA Fecha 6 (27-29 mayo) =====
-  // Grupo A
-  { id: 37,copa: 'suda', date: '27 may', time: '19:00', home: 'MACARA',      away: 'TIGRE' },
-  { id: 38,copa: 'suda', date: '27 may', time: '21:00', home: 'ALIANZAPER',  away: 'AMERICA' },
-  // Grupo D
-  { id: 39,copa: 'suda', date: '28 may', time: '19:00', home: 'CUENCA',      away: 'SANLORENZO' },
-  { id: 40,copa: 'suda', date: '28 may', time: '21:30', home: 'RECOLETA',    away: 'SANTOS' },
-  // Grupo E
-  { id: 41,copa: 'suda', date: '28 may', time: '19:00', home: 'INDBOL',      away: 'RACING' },
-  { id: 42,copa: 'suda', date: '28 may', time: '21:30', home: 'CARACAS',     away: 'BOTAFOGO' },
-  // Grupo F
-  { id: 43,copa: 'suda', date: '29 may', time: '19:00', home: 'RIESTRA',     away: 'GREMIO' },
-  { id: 44,copa: 'suda', date: '29 may', time: '21:00', home: 'MCTORQUE',    away: 'PALESTINO' },
-  // Grupo G
-  { id: 45,copa: 'suda', date: '29 may', time: '19:00', home: 'AUDAX',       away: 'BARRACAS' },
-  { id: 46,copa: 'suda', date: '29 may', time: '21:30', home: 'VASCO',       away: 'OLIMPIA' },
-  // Grupo H
-  { id: 47,copa: 'suda', date: '28 may', time: '21:30', home: 'BLOOMING',    away: 'RIVER' },
-  { id: 48,copa: 'suda', date: '28 may', time: '19:00', home: 'CARABOBO',    away: 'BRAGANTINO' }
+  // ===== FECHA 6 SUDAMERICANA (26-28 mayo) =====
+  // Grupo D - San Lorenzo (local)
+  { id: 19,copa: 'suda', date: '26 may', time: '21:30', home: 'SANLORENZO',  away: 'RECOLETA',    venue: 'Nuevo Gasómetro' },
+  // Grupo E - Racing (local)
+  { id: 20,copa: 'suda', date: '27 may', time: '19:00', home: 'RACING',      away: 'INDBOL',      venue: 'Cilindro de Avellaneda' },
+  // Grupo G - Barracas Central (visitante)
+  { id: 21,copa: 'suda', date: '27 may', time: '21:30', home: 'VASCO',       away: 'BARRACAS',    venue: 'São Januário, Rio' },
+  // Grupo H - River (local)
+  { id: 22,copa: 'suda', date: '27 may', time: '21:30', home: 'RIVER',       away: 'BLOOMING',    venue: 'Monumental, Buenos Aires' },
+  // Grupo A - Tigre (local)
+  { id: 23,copa: 'suda', date: '28 may', time: '21:30', home: 'TIGRE',       away: 'ALIANZAPER',  venue: 'Estadio Victoria, Tigre' },
+  // Grupo F - Riestra (local)
+  { id: 24,copa: 'suda', date: '28 may', time: '19:00', home: 'RIESTRA',     away: 'PALESTINO',   venue: 'Guillermo Laza, Bajo Flores' }
 ];
 
-// ============ STATE ============
-const STORAGE_KEY = 'prode_copas_arg_2026';
+const SPORTSDB_LIBER_ID = '4501';
+const SPORTSDB_SUDA_ID = '4505';
+
+const STORAGE_KEY = 'prode_copas_arg_v2_2026';
 let state = {
   user: '',
   pronosticos: {},
-  resultados: {}
+  resultados: {},
+  resultadosAuto: {},
+  lastUpdate: null
 };
 
 function loadState() {
-  try {
-    const s = localStorage.getItem(STORAGE_KEY);
-    if (s) state = { ...state, ...JSON.parse(s) };
-  } catch(e) {}
+  try { const s = localStorage.getItem(STORAGE_KEY); if (s) state = { ...state, ...JSON.parse(s) }; } catch(e) {}
 }
 function saveState() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
 }
-
 function $(s) { return document.querySelector(s); }
 function $$(s) { return document.querySelectorAll(s); }
 function showToast(msg, type = '') {
   const t = $('#toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
-  setTimeout(() => t.className = 'toast ' + type, 2500);
+  setTimeout(() => t.className = 'toast ' + type, 3000);
 }
-
 function renderShield(teamKey) {
   const t = TEAMS[teamKey];
   if (!t) return `<div class="team-shield"><span class="fallback">?</span></div>`;
@@ -848,7 +498,6 @@ function renderShield(teamKey) {
     <span class="fallback" style="display:none;align-items:center;justify-content:center;width:100%;height:100%">${t.short}</span>
   </div>`;
 }
-
 function calcularPuntos(matchId) {
   const p = state.pronosticos[matchId];
   const r = state.resultados[matchId];
@@ -860,42 +509,120 @@ function calcularPuntos(matchId) {
   return gP === gR ? { tipo: 'partial', pts: 2 } : { tipo: 'zero', pts: 0 };
 }
 
+// ============ AUTO UPDATE ============
+function normName(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+}
+function findMatchByTeams(homeApi, awayApi, copa) {
+  const homeN = normName(homeApi);
+  const awayN = normName(awayApi);
+  for (const m of MATCHES) {
+    if (m.copa !== copa) continue;
+    const lT = TEAMS[m.home], vT = TEAMS[m.away];
+    if (!lT || !vT) continue;
+    const lN = normName(lT.apiName), vN = normName(vT.apiName);
+    if ((homeN.includes(lN) || lN.includes(homeN)) && (awayN.includes(vN) || vN.includes(awayN))) return m;
+  }
+  return null;
+}
+async function fetchSportsDB(leagueId) {
+  try {
+    const url = `https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=${leagueId}&s=2026`;
+    const resp = await fetch(url);
+    if (!resp.ok) return { ok: false, error: 'HTTP ' + resp.status };
+    const data = await resp.json();
+    return { ok: true, events: data.events || [] };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+}
+async function autoUpdateResults() {
+  const btn = $('#btnAutoUpdate');
+  btn.disabled = true;
+  btn.textContent = '⏳ Buscando...';
+  let nuevos = 0, actualizados = 0;
+  
+  try {
+    for (const [leagueId, copa] of [[SPORTSDB_LIBER_ID, 'liber'], [SPORTSDB_SUDA_ID, 'suda']]) {
+      const res = await fetchSportsDB(leagueId);
+      if (!res.ok) continue;
+      for (const ev of res.events) {
+        if (ev.intHomeScore === null || ev.intHomeScore === '') continue;
+        const match = findMatchByTeams(ev.strHomeTeam, ev.strAwayTeam, copa);
+        if (!match) continue;
+        const gl = parseInt(ev.intHomeScore);
+        const gv = parseInt(ev.intAwayScore);
+        if (isNaN(gl) || isNaN(gv)) continue;
+        const ya = state.resultados[match.id];
+        if (!ya || ya.local !== gl || ya.visitante !== gv) {
+          state.resultados[match.id] = { local: gl, visitante: gv };
+          state.resultadosAuto[match.id] = true;
+          if (!ya) nuevos++; else actualizados++;
+        }
+      }
+    }
+    state.lastUpdate = new Date().toISOString();
+    saveState();
+    updateStats();
+    renderResultados();
+    if (nuevos > 0 || actualizados > 0) {
+      showToast(`✅ ${nuevos} nuevos · ${actualizados} actualizados`, 'success');
+    } else {
+      showToast('ℹ️ No hay resultados nuevos', 'info');
+    }
+  } catch (err) {
+    showToast('❌ Error: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔄 Actualizar';
+    actualizarBarraUpdate();
+  }
+}
+function actualizarBarraUpdate() {
+  const el = $('#lastUpdate');
+  if (!el) return;
+  if (state.lastUpdate) {
+    const d = new Date(state.lastUpdate);
+    el.textContent = '🕐 ' + d.toLocaleString('es-AR');
+  } else {
+    el.textContent = '⚠️ Sin actualizar aún';
+  }
+}
+
+// ============ RENDER ============
+function getDayName(date) {
+  const map = {
+    '19 may':'Martes 🔴','20 may':'Miércoles 🔴🔵','21 may':'Jueves 🔴🔵',
+    '26 may':'Martes 🔵','27 may':'Miércoles 🔴🔵','28 may':'Jueves 🔴🔵'
+  };
+  return map[date] || '';
+}
 function renderProde(filter = 'all') {
   let list = MATCHES;
   if (filter === 'liber') list = MATCHES.filter(m => m.copa === 'liber');
   else if (filter === 'suda') list = MATCHES.filter(m => m.copa === 'suda');
-
   const byDate = {};
-  list.forEach(m => {
-    if (!byDate[m.date]) byDate[m.date] = [];
-    byDate[m.date].push(m);
-  });
-
+  list.forEach(m => { if (!byDate[m.date]) byDate[m.date] = []; byDate[m.date].push(m); });
   $('#prodeContainer').innerHTML = Object.entries(byDate).map(([date, ms]) => `
     <div class="match-day-group">
-      <div class="match-day-title">
-        <span class="date-badge">${date}</span>
-        ${getDayName(date)}
-      </div>
+      <div class="match-day-title"><span class="date-badge">${date}</span>${getDayName(date)}</div>
       ${ms.map(m => renderMatchProde(m)).join('')}
     </div>
   `).join('');
-
   $('#prodeContainer').querySelectorAll('.score-input').forEach(inp => {
     inp.addEventListener('input', handleProdeInput);
     inp.addEventListener('blur', handleProdeInput);
   });
 }
-
 function renderMatchProde(m) {
-  const home = TEAMS[m.home] || { name: m.home, arg: false };
-  const away = TEAMS[m.away] || { name: m.away, arg: false };
+  const home = TEAMS[m.home] || { name: m.home };
+  const away = TEAMS[m.away] || { name: m.away };
   const p = state.pronosticos[m.id] || {};
   const r = state.resultados[m.id];
   const pts = calcularPuntos(m.id);
   const hVal = p.local !== undefined ? p.local : '';
   const aVal = p.visitante !== undefined ? p.visitante : '';
-
+  const isAuto = state.resultadosAuto[m.id];
   return `
     <div class="match is-${m.copa} is-arg">
       <div class="team-side home">
@@ -904,27 +631,23 @@ function renderMatchProde(m) {
       </div>
       <div class="vs-block">
         <div class="vs-scores">
-          <input type="number" class="score-input ${hVal !== '' ? 'filled' : ''}" 
-                 min="0" max="20" data-match="${m.id}" data-side="local" value="${hVal}">
+          <input type="number" class="score-input ${hVal !== '' ? 'filled' : ''}" min="0" max="20" data-match="${m.id}" data-side="local" value="${hVal}">
           <span class="vs-label">VS</span>
-          <input type="number" class="score-input ${aVal !== '' ? 'filled' : ''}" 
-                 min="0" max="20" data-match="${m.id}" data-side="visitante" value="${aVal}">
+          <input type="number" class="score-input ${aVal !== '' ? 'filled' : ''}" min="0" max="20" data-match="${m.id}" data-side="visitante" value="${aVal}">
         </div>
         <div class="match-meta">
           <span class="copa-tag ${m.copa}">${m.copa === 'liber' ? 'LIB' : 'SUDA'}</span>
-          <strong>${m.time}</strong>
+          <strong>${m.time}</strong> · ${m.venue}
         </div>
-        ${r ? `<div class="match-result">REAL: ${r.local}-${r.visitante}</div>` : ''}
+        ${r ? `<div class="match-result ${isAuto ? 'auto' : ''}">REAL: ${r.local}-${r.visitante}${isAuto ? ' 🤖' : ''}</div>` : ''}
         ${pts ? `<div class="match-points ${pts.tipo}">${pts.pts === 0 ? '0' : '+' + pts.pts} pts</div>` : ''}
       </div>
       <div class="team-side away">
         ${renderShield(m.away)}
         <span class="team-name ${away.arg ? 'is-arg' : ''}">${away.name}</span>
       </div>
-    </div>
-  `;
+    </div>`;
 }
-
 function handleProdeInput(e) {
   const inp = e.target;
   const mid = inp.dataset.match;
@@ -934,79 +657,49 @@ function handleProdeInput(e) {
     val = Math.max(0, Math.min(20, parseInt(val) || 0));
     inp.value = val;
     inp.classList.add('filled');
-  } else {
-    inp.classList.remove('filled');
-    val = '';
-  }
+  } else { inp.classList.remove('filled'); val = ''; }
   if (!state.pronosticos[mid]) state.pronosticos[mid] = {};
   state.pronosticos[mid][side] = val === '' ? undefined : parseInt(val);
   saveState();
   updateStats();
 }
-
-function getDayName(date) {
-  const map = {
-    '20 may':'Miércoles','21 may':'Jueves','22 may':'Viernes','23 may':'Sábado',
-    '27 may':'Miércoles','28 may':'Jueves','29 may':'Viernes','30 may':'Sábado'
-  };
-  return map[date] || '';
-}
-
 function renderResultados() {
   const byDate = {};
-  MATCHES.forEach(m => {
-    if (!byDate[m.date]) byDate[m.date] = [];
-    byDate[m.date].push(m);
-  });
-
+  MATCHES.forEach(m => { if (!byDate[m.date]) byDate[m.date] = []; byDate[m.date].push(m); });
   $('#resultadosContainer').innerHTML = Object.entries(byDate).map(([date, ms]) => `
     <div class="match-day-group">
-      <div class="match-day-title">
-        <span class="date-badge" style="background:var(--win)">${date}</span>
-        ${getDayName(date)}
-      </div>
+      <div class="match-day-title"><span class="date-badge" style="background:var(--win)">${date}</span>${getDayName(date)}</div>
       ${ms.map(m => {
         const home = TEAMS[m.home] || { name: m.home };
         const away = TEAMS[m.away] || { name: m.away };
         const r = state.resultados[m.id] || {};
         const p = state.pronosticos[m.id] || {};
         const pts = calcularPuntos(m.id);
-        return `
-          <div class="match is-${m.copa} is-arg">
-            <div class="team-side home">
-              ${renderShield(m.home)}
-              <span class="team-name ${home.arg ? 'is-arg' : ''}">${home.name}</span>
+        const isAuto = state.resultadosAuto[m.id];
+        return `<div class="match is-${m.copa} is-arg">
+          <div class="team-side home">${renderShield(m.home)}<span class="team-name ${home.arg ? 'is-arg' : ''}">${home.name}</span></div>
+          <div class="vs-block">
+            <div class="vs-scores">
+              <input type="number" class="score-input result-input ${r.local !== undefined ? (isAuto ? 'auto' : 'filled') : ''}" min="0" max="20" data-match="${m.id}" data-side="local" value="${r.local !== undefined ? r.local : ''}">
+              <span class="vs-label">REAL</span>
+              <input type="number" class="score-input result-input ${r.visitante !== undefined ? (isAuto ? 'auto' : 'filled') : ''}" min="0" max="20" data-match="${m.id}" data-side="visitante" value="${r.visitante !== undefined ? r.visitante : ''}">
             </div>
-            <div class="vs-block">
-              <div class="vs-scores">
-                <input type="number" class="score-input result-input ${r.local !== undefined ? 'filled' : ''}" 
-                       min="0" max="20" data-match="${m.id}" data-side="local" value="${r.local !== undefined ? r.local : ''}">
-                <span class="vs-label">REAL</span>
-                <input type="number" class="score-input result-input ${r.visitante !== undefined ? 'filled' : ''}" 
-                       min="0" max="20" data-match="${m.id}" data-side="visitante" value="${r.visitante !== undefined ? r.visitante : ''}">
-              </div>
-              <div class="match-meta">
-                <span class="copa-tag ${m.copa}">${m.copa === 'liber' ? 'LIB' : 'SUDA'}</span>
-                ${p.local !== undefined ? '· Pred: ' + p.local + '-' + p.visitante : '· Sin pred'}
-              </div>
-              ${pts ? `<div class="match-points ${pts.tipo}">${pts.pts === 0 ? '0' : '+' + pts.pts} pts</div>` : ''}
+            <div class="match-meta">
+              <span class="copa-tag ${m.copa}">${m.copa === 'liber' ? 'LIB' : 'SUDA'}</span>
+              ${isAuto ? '🤖 auto' : ''}${p.local !== undefined ? ' · Pred: ' + p.local + '-' + p.visitante : ' · Sin pred'}
             </div>
-            <div class="team-side away">
-              ${renderShield(m.away)}
-              <span class="team-name ${away.arg ? 'is-arg' : ''}">${away.name}</span>
-            </div>
+            ${pts ? `<div class="match-points ${pts.tipo}">${pts.pts === 0 ? '0' : '+' + pts.pts} pts</div>` : ''}
           </div>
-        `;
+          <div class="team-side away">${renderShield(m.away)}<span class="team-name ${away.arg ? 'is-arg' : ''}">${away.name}</span></div>
+        </div>`;
       }).join('')}
-    </div>
-  `).join('');
-
+    </div>`).join('');
   $('#resultadosContainer').querySelectorAll('.result-input').forEach(inp => {
     inp.addEventListener('input', handleResultadoInput);
     inp.addEventListener('blur', handleResultadoInput);
   });
+  actualizarBarraUpdate();
 }
-
 function handleResultadoInput(e) {
   const inp = e.target;
   const mid = inp.dataset.match;
@@ -1016,21 +709,17 @@ function handleResultadoInput(e) {
     val = Math.max(0, Math.min(20, parseInt(val) || 0));
     inp.value = val;
     inp.classList.add('filled');
-  } else {
-    inp.classList.remove('filled');
-    val = '';
-  }
+  } else { inp.classList.remove('filled'); val = ''; }
   if (!state.resultados[mid]) state.resultados[mid] = {};
   state.resultados[mid][side] = val === '' ? undefined : parseInt(val);
+  delete state.resultadosAuto[mid];
   saveState();
   updateStats();
   renderResultados();
 }
-
 function renderResumen() {
   let exactos = 0, parciales = 0, errados = 0, pendientes = 0, total = 0;
   let liberPts = 0, sudaPts = 0, liberAciertos = 0, sudaAciertos = 0;
-
   MATCHES.forEach(m => {
     const pts = calcularPuntos(m.id);
     if (!pts) { pendientes++; return; }
@@ -1040,35 +729,16 @@ function renderResumen() {
     if (m.copa === 'liber') { liberPts += pts.pts; if (pts.pts > 0) liberAciertos++; }
     else { sudaPts += pts.pts; if (pts.pts > 0) sudaAciertos++; }
   });
-
   $('#resumenTotal').textContent = total;
   $('#resumenExactos').textContent = exactos;
   $('#resumenParciales').textContent = parciales;
   $('#resumenErrados').textContent = errados;
   $('#resumenPendientes').textContent = pendientes;
-
   $('#copaSummary').innerHTML = `
-    <div class="copa-card liber">
-      <div class="copa-name">🔴 Libertadores</div>
-      <div class="pts">${liberPts}</div>
-      <div class="extra">${liberAciertos} aciertos</div>
-    </div>
-    <div class="copa-card suda">
-      <div class="copa-name">🔵 Sudamericana</div>
-      <div class="pts">${sudaPts}</div>
-      <div class="extra">${sudaAciertos} aciertos</div>
-    </div>
+    <div class="copa-card liber"><div class="copa-name">🔴 Libertadores</div><div class="pts">${liberPts}</div><div class="extra">${liberAciertos} aciertos</div></div>
+    <div class="copa-card suda"><div class="copa-name">🔵 Sudamericana</div><div class="pts">${sudaPts}</div><div class="extra">${sudaAciertos} aciertos</div></div>
   `;
-
-  const argTeams = Object.entries(TEAMS).filter(([k,t]) => t.arg);
-  $('#equiposGrid').innerHTML = argTeams.map(([k, t]) => `
-    <div class="equipo-item">
-      ${renderShield(k)}
-      <div class="equipo-info">${t.name}<small>${t.copa === 'liber' ? '🔴 LIB' : '🔵 SUDA'} · Gr. ${t.grupo}</small></div>
-    </div>
-  `).join('');
 }
-
 function updateStats() {
   let pts = 0, cargados = 0;
   MATCHES.forEach(m => {
@@ -1100,19 +770,17 @@ $$('.filter-btn').forEach(b => {
     renderProde(b.dataset.filter);
   });
 });
-
+$('#btnAutoUpdate').addEventListener('click', autoUpdateResults);
 $('#btnExport').addEventListener('click', () => {
-  const data = JSON.stringify(state, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `prode_copas_arg_${state.user || 'usuario'}.json`;
+  a.download = `prode_copas_${state.user || 'usuario'}.json`;
   a.click();
   URL.revokeObjectURL(url);
   showToast('✅ Exportado', 'success');
 });
-
 $('#btnImport').addEventListener('click', () => {
   const inp = document.createElement('input');
   inp.type = 'file';
@@ -1122,38 +790,31 @@ $('#btnImport').addEventListener('click', () => {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
-      try {
-        state = { ...state, ...JSON.parse(ev.target.result) };
-        saveState();
-        renderAll();
-        showToast('✅ Importado', 'success');
-      } catch (err) { showToast('❌ Archivo inválido', 'error'); }
+      try { state = { ...state, ...JSON.parse(ev.target.result) }; saveState(); renderAll(); showToast('✅ Importado', 'success'); }
+      catch (err) { showToast('❌ Archivo inválido', 'error'); }
     };
     reader.readAsText(file);
   };
   inp.click();
 });
-
 $('#btnReset').addEventListener('click', () => {
   if (!confirm('¿Borrar pronósticos y resultados?')) return;
   state.pronosticos = {};
   state.resultados = {};
+  state.resultadosAuto = {};
+  state.lastUpdate = null;
   saveState();
   renderAll();
   showToast('🗑️ Reseteado');
 });
-
-$('#userName').addEventListener('input', e => {
-  state.user = e.target.value;
-  saveState();
-});
+$('#userName').addEventListener('input', e => { state.user = e.target.value; saveState(); });
 
 function renderAll() {
   $('#userName').value = state.user || '';
   renderProde('all');
   updateStats();
+  actualizarBarraUpdate();
 }
-
 loadState();
 renderAll();
 </script>
