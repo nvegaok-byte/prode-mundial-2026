@@ -407,61 +407,59 @@ const TEAMS = {
 // Datos cruzados de AFA, ESPN, Bolavip, sitios oficiales de clubes
 // Horarios en hora Argentina (UTC-3)
 const MATCHES = [
-  // ===== FECHA 5 LIBERTADORES (19-22 mayo) =====
+  // ===== FECHA 5 LIBERTADORES (19-21 mayo) =====
+[
   // Grupo H - Rosario Central
-  { id: 1, copa: 'liber', date: '19 may', time: '18:00', home: 'CENTRAL',     away: 'UCV',         venue: 'Gigante de Arroyito' },
+  { id: 1, copa: 'liber', date: '19 may', time: '19:00', home: 'CENTRAL', away: 'UCV', venue: 'Gigante de Arroyito, Rosario' },
   // Grupo E - Platense
-  { id: 2, copa: 'liber', date: '19 may', time: '20:00', home: 'SANTAFE',     away: 'PLATENSE',    venue: 'El Campín, Bogotá' },
+  { id: 2, copa: 'liber', date: '19 may', time: '21:00', home: 'SANTAFE', away: 'PLATENSE', venue: 'El Campín, Bogotá' },
   // Grupo D - Boca
-  { id: 3, copa: 'liber', date: '19 may', time: '21:30', home: 'BOCA',        away: 'CRUZEIRO',    venue: 'La Bombonera' },
+  { id: 3, copa: 'liber', date: '19 may', time: '21:30', home: 'BOCA', away: 'CRUZEIRO', venue: 'La Bombonera, Buenos Aires' },
   // Grupo G - Lanús
-  { id: 4, copa: 'liber', date: '20 may', time: '20:30', home: 'LDU',         away: 'LANUS',       venue: 'Rodrigo Paz Delgado, Quito' },
+  { id: 4, copa: 'liber', date: '20 may', time: '21:30', home: 'LDU', away: 'LANUS', venue: 'Rodrigo Paz Delgado, Quito' },
   // Grupo A - Estudiantes
-  { id: 5, copa: 'liber', date: '20 may', time: '20:30', home: 'FLAMENGO',    away: 'ESTUDIANTES', venue: 'Maracaná, Río de Janeiro' },
-  // Grupo C - Ind. Rivadavia
-  { id: 6, copa: 'liber', date: '21 may', time: '18:00', home: 'LAGUAIRA',    away: 'INDRIV',      venue: 'Olímpico de la UCV, Caracas' },
-
-  // ===== FECHA 5 SUDAMERICANA (19-21 mayo) =====
+  { id: 5, copa: 'liber', date: '20 may', time: '21:30', home: 'FLAMENGO', away: 'ESTUDIANTES', venue: 'Maracaná, Río de Janeiro' },
+  // Grupo C - Independiente Rivadavia
+  { id: 6, copa: 'liber', date: '21 may', time: '19:00', home: 'LAGUAIRA', away: 'INDRIV', venue: 'Olímpico UCV, Caracas' },
+  // ===== FECHA 5 SUDAMERICANA (20-22 mayo) =====
   // Grupo G - Barracas Central
-  { id: 7, copa: 'suda', date: '20 may', time: '21:00', home: 'BARRACAS',    away: 'AUDAX',       venue: 'Estadio Claudio Tapia' },
+  { id: 7, copa: 'suda', date: '20 may', time: '19:00', home: 'AUDAX', away: 'BARRACAS', venue: 'Bicentenario de La Florida, Santiago' },
   // Grupo D - San Lorenzo
-  { id: 8, copa: 'suda', date: '21 may', time: '19:00', home: 'SANLORENZO',  away: 'SANTOS',      venue: 'Nuevo Gasómetro' },
+  { id: 8, copa: 'suda', date: '21 may', time: '19:00', home: 'SANTOS', away: 'SANLORENZO', venue: 'Urbano Caldeira, Santos' },
   // Grupo E - Racing
-  { id: 9, copa: 'suda', date: '21 may', time: '21:30', home: 'BOTAFOGO',    away: 'RACING',      venue: 'Nilton Santos, Río' },
+  { id: 9, copa: 'suda', date: '21 may', time: '21:30', home: 'BOTAFOGO', away: 'RACING', venue: 'Nilton Santos, Río de Janeiro' },
   // Grupo H - River
-  { id: 10,copa: 'suda', date: '21 may', time: '21:30', home: 'BRAGANTINO',  away: 'RIVER',       venue: 'Cícero de Souza, Bragança' },
+  { id: 10, copa: 'suda', date: '21 may', time: '21:30', home: 'RIVER', away: 'BRAGANTINO', venue: 'Monumental, Buenos Aires' },
   // Grupo A - Tigre
-  { id: 11,copa: 'suda', date: '21 may', time: '21:00', home: 'MACARA',      away: 'TIGRE',       venue: 'Bellavista, Ambato' },
+  { id: 11, copa: 'suda', date: '21 may', time: '21:00', home: 'MACARA', away: 'TIGRE', venue: 'Bellavista, Ambato' },
   // Grupo F - Riestra
-  { id: 12,copa: 'suda', date: '21 may', time: '19:00', home: 'GREMIO',      away: 'RIESTRA',     venue: 'Arena do Grêmio' },
-
+  { id: 12, copa: 'suda', date: '22 may', time: '19:00', home: 'GREMIO', away: 'RIESTRA', venue: 'Arena do Grêmio, Porto Alegre' },
   // ===== FECHA 6 LIBERTADORES (26-28 mayo) =====
-  // Grupo H - Rosario Central (visitante)
-  { id: 13,copa: 'liber', date: '28 may', time: '19:00', home: 'INDVALLE',    away: 'CENTRAL',     venue: 'Banco Guayaquil, Quito' },
-  // Grupo E - Platense (visitante)
-  { id: 14,copa: 'liber', date: '28 may', time: '19:00', home: 'PENAROL',     away: 'PLATENSE',    venue: 'Campeón del Siglo, Montevideo' },
-  // Grupo D - Boca (visitante)
-  { id: 15,copa: 'liber', date: '28 may', time: '23:00', home: 'UCATOLICA',   away: 'BOCA',        venue: 'San Carlos de Apoquindo, Santiago' },
-  // Grupo G - Lanús (local)
-  { id: 16,copa: 'liber', date: '27 may', time: '21:30', home: 'LANUS',       away: 'ALWAYS',      venue: 'La Fortaleza, Lanús' },
-  // Grupo A - Estudiantes (local)
-  { id: 17,copa: 'liber', date: '26 may', time: '21:30', home: 'ESTUDIANTES', away: 'CUSCO',       venue: 'UNO, La Plata' },
-  // Grupo C - Ind. Rivadavia (local)
-  { id: 18,copa: 'liber', date: '27 may', time: '21:30', home: 'INDRIV',      away: 'FLUMINENSE',  venue: 'Malvinas Argentinas, Mendoza' },
-
-  // ===== FECHA 6 SUDAMERICANA (26-28 mayo) =====
-  // Grupo D - San Lorenzo (local)
-  { id: 19,copa: 'suda', date: '26 may', time: '21:30', home: 'SANLORENZO',  away: 'RECOLETA',    venue: 'Nuevo Gasómetro' },
-  // Grupo E - Racing (local)
-  { id: 20,copa: 'suda', date: '27 may', time: '19:00', home: 'RACING',      away: 'INDBOL',      venue: 'Cilindro de Avellaneda' },
-  // Grupo G - Barracas Central (visitante)
-  { id: 21,copa: 'suda', date: '27 may', time: '21:30', home: 'VASCO',       away: 'BARRACAS',    venue: 'São Januário, Rio' },
-  // Grupo H - River (local)
-  { id: 22,copa: 'suda', date: '27 may', time: '21:30', home: 'RIVER',       away: 'BLOOMING',    venue: 'Monumental, Buenos Aires' },
-  // Grupo A - Tigre (local)
-  { id: 23,copa: 'suda', date: '28 may', time: '21:30', home: 'TIGRE',       away: 'ALIANZAPER',  venue: 'Estadio Victoria, Tigre' },
-  // Grupo F - Riestra (local)
-  { id: 24,copa: 'suda', date: '28 may', time: '19:00', home: 'RIESTRA',     away: 'PALESTINO',   venue: 'Guillermo Laza, Bajo Flores' }
+  // Grupo H - Rosario Central
+  { id: 13, copa: 'liber', date: '28 may', time: '23:00', home: 'INDVALLE', away: 'CENTRAL', venue: 'Banco Guayaquil, Quito' },
+  // Grupo E - Platense
+  { id: 14, copa: 'liber', date: '28 may', time: '19:00', home: 'PENAROL', away: 'PLATENSE', venue: 'Campeón del Siglo, Montevideo' },
+  // Grupo D - Boca
+  { id: 15, copa: 'liber', date: '28 may', time: '23:00', home: 'UCATOLICA', away: 'BOCA', venue: 'San Carlos de Apoquindo, Santiago' },
+  // Grupo G - Lanús
+  { id: 16, copa: 'liber', date: '27 may', time: '21:30', home: 'LANUS', away: 'ALWAYS', venue: 'La Fortaleza, Lanús' },
+  // Grupo A - Estudiantes
+  { id: 17, copa: 'liber', date: '26 may', time: '21:30', home: 'ESTUDIANTES', away: 'CUSCO', venue: 'UNO, La Plata' },
+  // Grupo C - Independiente Rivadavia
+  { id: 18, copa: 'liber', date: '27 may', time: '21:30', home: 'INDRIV', away: 'FLUMINENSE', venue: 'Malvinas Argentinas, Mendoza' },
+  // ======FECHA 6 SUDAMERICANA (26-28 mayo) =====
+  // Grupo D - San Lorenzo
+  { id: 19, copa: 'suda', date: '26 may', time: '21:30', home: 'SANLORENZO', away: 'RECOLETA', venue: 'Nuevo Gasómetro, Buenos Aires' },
+  // Grupo E - Racing
+  { id: 20, copa: 'suda', date: '27 may', time: '19:00', home: 'RACING', away: 'INDEPENDIENTE', venue: 'Cilindro de Avellaneda' },
+  // Grupo G - Barracas Central
+  { id: 21, copa: 'suda', date: '27 may', time: '21:30', home: 'VASCO', away: 'BARRACAS', venue: 'São Januário, Río de Janeiro' },
+  // Grupo H - River
+  { id: 22, copa: 'suda', date: '27 may', time: '21:30', home: 'RIVER', away: 'BLOOMING', venue: 'Monumental, Buenos Aires' },
+  // Grupo A - Tigre
+  { id: 23, copa: 'suda', date: '28 may', time: '21:30', home: 'TIGRE', away: 'ALIANZAPER', venue: 'Estadio José Dellagiovanna, Tigre' },
+  // Grupo F - Riestra
+  { id: 24, copa: 'suda', date: '28 may', time: '19:00', home: 'RIESTRA', away: 'PALESTINO', venue: 'Guillermo Laza, Bajo Flores' }
 ];
 
 const SPORTSDB_LIBER_ID = '4501';
